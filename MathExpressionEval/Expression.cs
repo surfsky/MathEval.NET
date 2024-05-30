@@ -556,7 +556,7 @@ namespace Org.MathEval
                 i++;
                 argsMap.Add(i, VisitNode(expr));
             }
-            return callFunc.Excuter.Execute(argsMap, Dc);
+            return callFunc.Excuter.Execute(argsMap, Dc, "");
         }
 
         /// <summary>

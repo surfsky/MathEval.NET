@@ -1,0 +1,42 @@
+\\Mac\Downloads\Dev\240208-OfficeUtils\参考\expression-evaluator-c-sharp-main\Math expression eval\UnitTest\bin\Debug\net45\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+\\Mac\Downloads\Dev\240208-OfficeUtils\参考\expression-evaluator-c-sharp-main\Math expression eval\UnitTest\bin\Debug\net45\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+\\Mac\Downloads\Dev\240208-OfficeUtils\参考\expression-evaluator-c-sharp-main\Math expression eval\UnitTest\bin\Debug\net45\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+\\Mac\Downloads\Dev\240208-OfficeUtils\参考\expression-evaluator-c-sharp-main\Math expression eval\UnitTest\bin\Debug\net45\zh-Hans\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.resources.dll
+\\Mac\Downloads\Dev\240208-OfficeUtils\参考\expression-evaluator-c-sharp-main\Math expression eval\UnitTest\bin\Debug\net45\zh-Hans\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.resources.dll
+\\Mac\Downloads\Dev\240208-OfficeUtils\参考\expression-evaluator-c-sharp-main\Math expression eval\UnitTest\bin\Debug\net45\zh-Hans\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
+\\Mac\Downloads\Dev\240208-OfficeUtils\参考\expression-evaluator-c-sharp-main\Math expression eval\UnitTest\bin\Debug\net45\UnitTest.dll
+\\Mac\Downloads\Dev\240208-OfficeUtils\参考\expression-evaluator-c-sharp-main\Math expression eval\UnitTest\bin\Debug\net45\UnitTest.pdb
+\\Mac\Downloads\Dev\240208-OfficeUtils\参考\expression-evaluator-c-sharp-main\Math expression eval\UnitTest\bin\Debug\net45\Microsoft.VisualStudio.CodeCoverage.Shim.dll
+\\Mac\Downloads\Dev\240208-OfficeUtils\参考\expression-evaluator-c-sharp-main\Math expression eval\UnitTest\bin\Debug\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+\\Mac\Downloads\Dev\240208-OfficeUtils\参考\expression-evaluator-c-sharp-main\Math expression eval\UnitTest\bin\Debug\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+\\Mac\Downloads\Dev\240208-OfficeUtils\参考\expression-evaluator-c-sharp-main\Math expression eval\UnitTest\bin\Debug\net45\org.matheval.dll
+\\Mac\Downloads\Dev\240208-OfficeUtils\参考\expression-evaluator-c-sharp-main\Math expression eval\UnitTest\bin\Debug\net45\org.matheval.pdb
+\\Mac\Downloads\Dev\240208-OfficeUtils\参考\expression-evaluator-c-sharp-main\Math expression eval\UnitTest\obj\Debug\net45\UnitTest.csproj.AssemblyReference.cache
+\\Mac\Downloads\Dev\240208-OfficeUtils\参考\expression-evaluator-c-sharp-main\Math expression eval\UnitTest\obj\Debug\net45\UnitTest.GeneratedMSBuildEditorConfig.editorconfig
+\\Mac\Downloads\Dev\240208-OfficeUtils\参考\expression-evaluator-c-sharp-main\Math expression eval\UnitTest\obj\Debug\net45\UnitTest.AssemblyInfoInputs.cache
+\\Mac\Downloads\Dev\240208-OfficeUtils\参考\expression-evaluator-c-sharp-main\Math expression eval\UnitTest\obj\Debug\net45\UnitTest.AssemblyInfo.cs
+\\Mac\Downloads\Dev\240208-OfficeUtils\参考\expression-evaluator-c-sharp-main\Math expression eval\UnitTest\obj\Debug\net45\UnitTest.csproj.CoreCompileInputs.cache
+\\Mac\Downloads\Dev\240208-OfficeUtils\参考\expression-evaluator-c-sharp-main\Math expression eval\UnitTest\obj\Debug\net45\UnitTest.csproj.CopyComplete
+\\Mac\Downloads\Dev\240208-OfficeUtils\参考\expression-evaluator-c-sharp-main\Math expression eval\UnitTest\obj\Debug\net45\UnitTest.dll
+\\Mac\Downloads\Dev\240208-OfficeUtils\参考\expression-evaluator-c-sharp-main\Math expression eval\UnitTest\obj\Debug\net45\UnitTest.pdb
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\_ref\MathEval\MathExpressionEval\UnitTest\bin\Debug\net45\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\_ref\MathEval\MathExpressionEval\UnitTest\bin\Debug\net45\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\_ref\MathEval\MathExpressionEval\UnitTest\bin\Debug\net45\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\_ref\MathEval\MathExpressionEval\UnitTest\bin\Debug\net45\zh-Hans\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.resources.dll
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\_ref\MathEval\MathExpressionEval\UnitTest\bin\Debug\net45\zh-Hans\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.resources.dll
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\_ref\MathEval\MathExpressionEval\UnitTest\bin\Debug\net45\zh-Hans\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\_ref\MathEval\MathExpressionEval\UnitTest\bin\Debug\net45\UnitTest.dll
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\_ref\MathEval\MathExpressionEval\UnitTest\bin\Debug\net45\UnitTest.pdb
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\_ref\MathEval\MathExpressionEval\UnitTest\bin\Debug\net45\Microsoft.VisualStudio.CodeCoverage.Shim.dll
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\_ref\MathEval\MathExpressionEval\UnitTest\bin\Debug\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\_ref\MathEval\MathExpressionEval\UnitTest\bin\Debug\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\_ref\MathEval\MathExpressionEval\UnitTest\bin\Debug\net45\org.matheval.dll
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\_ref\MathEval\MathExpressionEval\UnitTest\bin\Debug\net45\org.matheval.pdb
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\_ref\MathEval\MathExpressionEval\UnitTest\obj\Debug\net45\UnitTest.csproj.AssemblyReference.cache
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\_ref\MathEval\MathExpressionEval\UnitTest\obj\Debug\net45\UnitTest.GeneratedMSBuildEditorConfig.editorconfig
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\_ref\MathEval\MathExpressionEval\UnitTest\obj\Debug\net45\UnitTest.AssemblyInfoInputs.cache
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\_ref\MathEval\MathExpressionEval\UnitTest\obj\Debug\net45\UnitTest.AssemblyInfo.cs
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\_ref\MathEval\MathExpressionEval\UnitTest\obj\Debug\net45\UnitTest.csproj.CoreCompileInputs.cache
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\_ref\MathEval\MathExpressionEval\UnitTest\obj\Debug\net45\UnitTest.csproj.CopyComplete
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\_ref\MathEval\MathExpressionEval\UnitTest\obj\Debug\net45\UnitTest.dll
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\_ref\MathEval\MathExpressionEval\UnitTest\obj\Debug\net45\UnitTest.pdb

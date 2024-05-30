@@ -42,7 +42,7 @@ namespace Org.MathEval.Functions
         public List<FunctionDef> GetDefs()
         {
             return new List<FunctionDef>{
-                new FunctionDef(Consts.Round, typeof(decimal), new Type[]{ typeof(decimal), typeof(decimal) }, 2)
+                new FunctionDef(Consts.Round, typeof(decimal), 2, new Type[]{ typeof(decimal), typeof(decimal) })
             };
         }
 
@@ -52,7 +52,8 @@ namespace Org.MathEval.Functions
         /// <param name="args">args</param>
         /// <param name="dc">dc</param>
         /// <returns>Value</returns>
-        public Object Execute(Dictionary<int, Object> args, ExpressionContext dc)
+        /// <param name="funcName"></param>
+        public Object Execute(Dictionary<int, Object> args, ExpressionContext dc, string funcName = "")
         {
             int digits = decimal.ToInt32(Common.ToDecimal(args[2], dc.Culture));
             return Math.Round(Common.ToDecimal(args[1], dc.Culture), digits, dc.Rd);

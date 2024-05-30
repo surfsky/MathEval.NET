@@ -40,7 +40,7 @@ namespace Org.MathEval.Functions
         public List<FunctionDef> GetDefs()
         {
             return new List<FunctionDef>{
-                new FunctionDef(Consts.Proper, typeof(string), new Type[]{ typeof(string) }, 1)
+                new FunctionDef(Consts.Proper, typeof(string), 1, new Type[]{ typeof(string) })
             };
         }
 
@@ -50,7 +50,8 @@ namespace Org.MathEval.Functions
         /// <param name="args">args</param>
         /// <param name="dc">dc</param>
         /// <returns>To Title Case</returns>
-        public Object Execute(Dictionary<int, Object> args, ExpressionContext dc)
+        /// <param name="funcName"></param>
+        public Object Execute(Dictionary<int, Object> args, ExpressionContext dc, string funcName = "")
         {
             return this.ToTitleCase(Common.ToString(args[1], dc.Culture), dc);
         }

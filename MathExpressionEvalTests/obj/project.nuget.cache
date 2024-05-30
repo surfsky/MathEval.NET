@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "CFCOcuTq6R/h1AoU7aP6wVqokaredRYTqY47iPlW84h3Ln/HGkcub+WUx2LPwUQfWHZGyhVH4P/iHlWRZEM3iQ==",
+  "success": true,
+  "projectFilePath": "\\\\Mac\\Home\\Downloads\\Dev\\240208-OfficeUtils\\MathExpressionEval-github\\MathExpressionEvalTests\\MathExpressionEvalTests.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\CJH\\.nuget\\packages\\microsoft.codecoverage\\15.9.0\\microsoft.codecoverage.15.9.0.nupkg.sha512",
+    "C:\\Users\\CJH\\.nuget\\packages\\microsoft.net.test.sdk\\15.9.0\\microsoft.net.test.sdk.15.9.0.nupkg.sha512",
+    "C:\\Users\\CJH\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.3\\microsoft.netframework.referenceassemblies.1.0.3.nupkg.sha512",
+    "C:\\Users\\CJH\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net45\\1.0.3\\microsoft.netframework.referenceassemblies.net45.1.0.3.nupkg.sha512",
+    "C:\\Users\\CJH\\.nuget\\packages\\mstest.testadapter\\1.3.2\\mstest.testadapter.1.3.2.nupkg.sha512",
+    "C:\\Users\\CJH\\.nuget\\packages\\mstest.testframework\\1.3.2\\mstest.testframework.1.3.2.nupkg.sha512"
+  ],
+  "logs": []
+}

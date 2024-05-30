@@ -1,0 +1,7 @@
+﻿        public const string Key0 = "0";
+        public const string Key1 = "1";
+        public const string Key2 = "2";
+        public const string Key3 = "3";
+        public const string Key4 = "4";
+        public const string Key5 = "5";
+        public const string Key6 = "6";

@@ -38,7 +38,7 @@ namespace Org.MathEval.Functions
         /// <returns>FunctionDefs</returns>
         public List<FunctionDef> GetDefs()
         {
-            return new List<FunctionDef> { new FunctionDef(Consts.PI, typeof(decimal), null, 0) };
+            return new List<FunctionDef> { new FunctionDef(Consts.PI, typeof(decimal), 0, null) };
         }
 
         /// <summary>
@@ -47,7 +47,8 @@ namespace Org.MathEval.Functions
         /// <param name="args">args</param>
         /// <param name="dc">dc</param>
         /// <returns>Value</returns>
-        public Object Execute(Dictionary<int, Object> args, ExpressionContext dc)
+        /// <param name="funcName"></param>
+        public Object Execute(Dictionary<int, Object> args, ExpressionContext dc, string funcName = "")
         {
             return Convert.ToDecimal(Math.PI, dc.Culture);
         }

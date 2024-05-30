@@ -51,9 +51,9 @@ namespace Org.MathEval.Functions
         /// </summary>
         /// <param name="name">Function name</param>
         /// <param name="returnType">return datatype</param>
-        /// <param name="argTypes">Param type</param>
         /// <param name="argCount">param count。If argCount is -1 means unlimited args</param>
-        public FunctionDef(string name, Type returnType, Type[] argTypes, int argCount)
+        /// <param name="argTypes">Param type</param>
+        public FunctionDef(string name, Type returnType, int argCount, params Type[] argTypes)
         {
             Name = name.ToLowerInvariant();
             ReturnType = returnType;

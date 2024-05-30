@@ -43,8 +43,8 @@ namespace Org.MathEval.Functions
         public List<FunctionDef> GetDefs()
         {
             return new List<FunctionDef>{
-                new FunctionDef(Consts.Replace, typeof(string), new System.Type[] { typeof(string), typeof(string), typeof(string) }, 3),
-                new FunctionDef(Consts.Replace, typeof(string), new System.Type[] { typeof(string), typeof(decimal), typeof(decimal), typeof(string) }, 4) 
+                new FunctionDef(Consts.Replace, typeof(string), 3, new System.Type[] { typeof(string), typeof(string), typeof(string) }),
+                new FunctionDef(Consts.Replace, typeof(string), 4, new System.Type[] { typeof(string), typeof(decimal), typeof(decimal), typeof(string) })
             };
         }
 
@@ -54,7 +54,8 @@ namespace Org.MathEval.Functions
         /// <param name="args">args</param>
         /// <param name="dc">dc</param>
         /// <returns>Value</returns>
-        public object Execute(Dictionary<int, Object> args, ExpressionContext dc)
+        /// <param name="funcName"></param>
+        public object Execute(Dictionary<int, Object> args, ExpressionContext dc, string funcName = "")
         {
             if (args.Count == 3)
             {

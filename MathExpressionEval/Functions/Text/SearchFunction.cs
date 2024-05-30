@@ -43,8 +43,8 @@ namespace Org.MathEval.Functions
         public List<FunctionDef> GetDefs()
         {
             return new List<FunctionDef>{
-                new FunctionDef(Consts.Search, typeof(decimal), new Type[] { typeof(string), typeof(string), typeof(decimal)}, 3),
-                new FunctionDef(Consts.Search, typeof(decimal), new Type[] { typeof(string), typeof(string)}, 2)
+                new FunctionDef(Consts.Search, typeof(decimal), 3, new Type[] { typeof(string), typeof(string), typeof(decimal)}),
+                new FunctionDef(Consts.Search, typeof(decimal), 2, new Type[] { typeof(string), typeof(string)})
             };
         }
 
@@ -54,7 +54,8 @@ namespace Org.MathEval.Functions
         /// <param name="args">args</param>
         /// <param name="dc">dc</param>
         /// <returns>Value</returns>
-        public Object Execute(Dictionary<int, Object> args, ExpressionContext dc)
+        /// <param name="funcName"></param>
+        public Object Execute(Dictionary<int, Object> args, ExpressionContext dc, string funcName = "")
         {
             int pos = searchFunc(args, dc);
             return pos >= 0 ? pos + 1 : pos;

@@ -41,7 +41,7 @@ namespace Org.MathEval.Functions
         public List<FunctionDef> GetDefs()
         {
             return new List<FunctionDef>{
-                new FunctionDef(Consts.Power, typeof(decimal), new Type[]{ typeof(decimal), typeof(decimal) }, 2)
+                new FunctionDef(Consts.Power, typeof(decimal), 2, new Type[]{ typeof(decimal), typeof(decimal) })
             };
         }
 
@@ -51,7 +51,8 @@ namespace Org.MathEval.Functions
         /// <param name="args">args</param>
         /// <param name="dc">dc</param>
         /// <returns>Value</returns>
-        public Object Execute(Dictionary<int, Object> args, ExpressionContext dc)
+        /// <param name="funcName"></param>
+        public Object Execute(Dictionary<int, Object> args, ExpressionContext dc, string funcName = "")
         {
             double result = Math.Pow(decimal.ToDouble(Common.ToDecimal(args[1], dc.Culture)), decimal.ToDouble(Common.ToDecimal(args[2], dc.Culture)));
             return Convert.ToDecimal(result, dc.Culture);

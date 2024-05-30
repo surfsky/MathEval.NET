@@ -38,7 +38,7 @@ namespace Org.MathEval.Functions
         /// <returns>FunctionDefs</returns>
         public List<FunctionDef> GetDefs()
         {
-            return new List<FunctionDef> { new FunctionDef(Consts.BitNot, typeof(Boolean), new Type[] { typeof(decimal) }, 1) };
+            return new List<FunctionDef> { new FunctionDef(Consts.BitNot, typeof(Boolean), 1, new Type[] { typeof(decimal) }) };
         }
 
         /// <summary>
@@ -47,7 +47,8 @@ namespace Org.MathEval.Functions
         /// <param name="args">args</param>
         /// <param name="dc">dc</param>
         /// <returns>Value</returns>
-        public Object Execute(Dictionary<int, Object> args, ExpressionContext dc)
+        /// <param name="funcName"></param>
+        public Object Execute(Dictionary<int, Object> args, ExpressionContext dc, string funcName = "")
         {
             return ~int.Parse(Common.ToString(args[1], dc.Culture), dc.Culture);
         }

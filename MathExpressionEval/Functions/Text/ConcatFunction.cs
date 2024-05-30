@@ -39,7 +39,7 @@ namespace Org.MathEval.Functions
         /// <returns>FunctionDefs</returns>
         public List<FunctionDef> GetDefs()
         {
-            return new List<FunctionDef> { new FunctionDef(Consts.Concat, typeof(string), new Type[] { typeof(Object) }, -1) };
+            return new List<FunctionDef> { new FunctionDef(Consts.Concat, typeof(string), -1, new Type[] { typeof(Object) }) };
         }
 
         /// <summary>
@@ -48,7 +48,8 @@ namespace Org.MathEval.Functions
         /// <param name="args">args</param>
         /// <param name="dc">dc</param>
         /// <returns>Value</returns>
-        public Object Execute(Dictionary<int, Object> args, ExpressionContext dc)
+        /// <param name="funcName"></param>
+        public Object Execute(Dictionary<int, Object> args, ExpressionContext dc, string funcName = "")
         {
             string value = string.Empty;
             foreach (Object item in args.Values)

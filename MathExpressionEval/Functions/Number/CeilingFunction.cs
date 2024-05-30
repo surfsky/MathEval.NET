@@ -42,8 +42,8 @@ namespace Org.MathEval.Functions
         public List<FunctionDef> GetDefs()
         {
             return new List<FunctionDef>{
-                new FunctionDef(Consts.Ceiling, typeof(decimal), new Type[] { typeof(decimal) }, 1),
-                new FunctionDef(Consts.Ceiling, typeof(decimal), new Type[] { typeof(decimal),typeof(decimal) }, 2)
+                new FunctionDef(Consts.Ceiling, typeof(decimal), 1, new Type[] { typeof(decimal) }),
+                new FunctionDef(Consts.Ceiling, typeof(decimal), 2, new Type[] { typeof(decimal),typeof(decimal) })
             };
         }
 
@@ -53,7 +53,8 @@ namespace Org.MathEval.Functions
         /// <param name="args">args</param>
         /// <param name="dc">dc</param>
         /// <returns>Value</returns>
-        public Object Execute(Dictionary<int, Object> args, ExpressionContext dc)
+        /// <param name="funcName"></param>
+        public Object Execute(Dictionary<int, Object> args, ExpressionContext dc, string funcName = "")
         {
             return this.Ceiling(args, dc);
         }

@@ -37,12 +37,11 @@ namespace Org.MathEval.Functions
         /// <returns>List value Function</returns>
         List<FunctionDef> GetDefs();
 
-        /// <summary>
-        /// Execute
-        /// </summary>
+        /// <summary>Execute</summary>
         /// <param name="args">args</param>
         /// <param name="dc">dc</param>
         /// <returns>Value</returns>
-        object Execute(Dictionary<int, object> args, ExpressionContext dc);
+        /// <param name="funcName"></param>
+        object Execute(Dictionary<int, object> args, ExpressionContext dc, string funcName = "");
     }
 }

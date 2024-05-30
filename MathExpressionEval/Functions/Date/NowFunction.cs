@@ -39,7 +39,7 @@ namespace Org.MathEval.Functions
         /// <returns>FunctionDefs</returns>
         public List<FunctionDef> GetDefs()
         {
-            return new List<FunctionDef> { new FunctionDef("now", typeof(DateTime), null, 0) };
+            return new List<FunctionDef> { new FunctionDef("now", typeof(DateTime), 0, null) };
         }
 
         /// <summary>
@@ -48,7 +48,8 @@ namespace Org.MathEval.Functions
         /// <param name="args">args</param>
         /// <param name="dc">dc</param>
         /// <returns>TODAY</returns>
-        public Object Execute(Dictionary<int, Object> args, ExpressionContext dc)
+        /// <param name="funcName"></param>
+        public Object Execute(Dictionary<int, Object> args, ExpressionContext dc, string funcName = "")
         {
             return DateTime.Now;
         }

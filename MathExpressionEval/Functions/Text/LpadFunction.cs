@@ -41,7 +41,7 @@ namespace Org.MathEval.Functions
         /// <returns>FunctionDefs</returns>
         public List<FunctionDef> GetDefs()
         {
-            return new List<FunctionDef> { new FunctionDef(Consts.LPAD, typeof(string), new Type[] { typeof(string), typeof(decimal), typeof(string) }, 3) };
+            return new List<FunctionDef> { new FunctionDef(Consts.LPAD, typeof(string), 3, new Type[] { typeof(string), typeof(decimal), typeof(string) }) };
         }
 
         /// <summary>
@@ -50,7 +50,8 @@ namespace Org.MathEval.Functions
         /// <param name="args">args</param>
         /// <param name="dc">dc</param>
         /// <returns>Value</returns>
-        public Object Execute(Dictionary<int, Object> args, ExpressionContext dc)
+        /// <param name="funcName"></param>
+        public Object Execute(Dictionary<int, Object> args, ExpressionContext dc, string funcName = "")
         {
             return this.LeftPad(Common.ToString(args[1], dc.Culture), decimal.ToInt32(Common.ToDecimal(args[2], dc.Culture)), Common.ToString(args[3], dc.Culture));
         }
