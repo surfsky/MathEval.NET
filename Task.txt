@@ -1,0 +1,11 @@
+不等于改为  !=
+支持身份证识别方法
+支持中英文字符串提取方法
+
+------------------------------
+重构
+------------------------------
+    从 Common 类中拆出 Consts类，并简化命名
+    org.matheval -> Org.MathEval
+    WorkingCulture -> Culture
+    argsMap 改为 int -> object，简化一堆的Const.Key123456
