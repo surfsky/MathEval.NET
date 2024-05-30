@@ -19,7 +19,7 @@ using System.Reflection;
     " document and usage examples: https://matheval.org/math-expression-eval-for-c-sh" +
     "arp/")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.2")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0.2+f62d658194684593830375c57d67e5cc80cacc67")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0.2+d27b9fa22413eb4259e19e101ee6faec60c92cf6")]
 [assembly: System.Reflection.AssemblyProductAttribute("Math expression eval")]
 [assembly: System.Reflection.AssemblyTitleAttribute("org.matheval")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.2")]
