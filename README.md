@@ -1,100 +1,57 @@
-# About MathEval
+# 1. About MathEval
 [![NuGet version (org.matheval)](https://img.shields.io/nuget/v/org.matheval.svg?style=flat-square)](https://www.nuget.org/packages/MathExpressionEval/)
 
 MathEval is a mathematical expressions evaluator library written in C#. Allows to evaluate mathematical, boolean, string and datetime expressions
 Code is written in pure C#, run on the fly. We don't use any third party libraries or packages.
 
 
-This respository is fork from
+This respository forks from
 https://github.com/matheval/expression-evaluator-c-sharp
 
-And make many change:
+And make many changes:
 
-1. Reconstrct for csharp-like naming, refolder, simplied, and more readable.
+1. Reconstruct for csharp-like naming, refolder, simplied, and more readable.
 2. Support more DateTime functions.
 3. Support custom function plugin.
 
-Detail:
-1.
-2.
-3.
 
 
 
-# Installation
+# 2. Installation
 
 Using Package Manager
 
 ```bash
-PM> Install-Package MathExpressionEval -Version 4.5.0.0
+PM> Install-Package MathEval.NET -Version 4.5.0.0
 ```
-# Official document
 
-[https://matheval.org/math-expression-eval-for-c-sharp/](https://matheval.org/math-expression-eval-for-c-sharp/)
+# 3. Supported operators, contants, functions
 
-# Supported operators, contants, functions
+## 3.1 Supported Operators
 
-## Supported Operators
-<table>
-<tbody>
-	<tr>
-		<th>Operator</th>
-		<th>Description</th>
-	</tr>
-	<tr>
-		<td>+</td>
-		<td>Additive operator / Unary plus / Concatenate string / Datetime addition</td>
-	</tr>
-	<tr>
-		<td>&</td>
-		<td>Concatenate string</td>
-	</tr>
-	<tr>
-		<td>–</td>
-		<td>Subtraction operator / Unary minus / Datetime subtraction</td>
-	</tr>
-	<tr>
-		<td>*</td>
-		<td>Multiplication operator, can be omitted in front of an open bracket</td>
-	</tr>
-	<tr>
-		<td>/</td>
-		<td>Division operator</td>
-	</tr>
-	<tr>
-		<td>%</td>
-		<td>Remainder operator (Modulo)</td>
-	</tr>
-	<tr>
-		<td>^</td>
-		<td>Power operator</td>
-	</tr>
-</tbody>
-</table>
+| Operator | Description                                                              |
+|----------|--------------------------------------------------------------------------|
+| +        | Additive operator / Unary plus / Concatenate string / Datetime addition
+| -        | Subtraction operator / Unary minus / Datetime subtraction
+| *        | Multiplication operator, can be omitted in front of an open bracket
+| /        | Division operator
+| %        | Remainder operator (Modulo)
+| ^        | Power operator
+| &        | Concatenate string
 
 
-## Supported conditional statements
 
-<table>
-<tbody>
-	<tr>
-		<th>Conditional statement</th>
-		<th>Description</th>
-	</tr>
-	<tr>
-		<td>IF(logical_condition, value_if_true, value_if_false)</td>
-		<td>Example:  
-		`IF(2>1,"Pass","Fail")`</td>
-	</tr>
-	<tr>
-		<td>SWITCH(expression, val1,result1, [val2,result2], …, [default])</td>
-		<td>Example:  
-		`SWITCH(3+2,5,"Apple",7,"Mango",3,"Good","N/A")`</td>
-	</tr>
-</tbody>
-</table>
+## 3.2 Supported conditional statements
 
-## Supported logical and math functions
+
+| Conditional statement                                             | Description                   |
+|-------------------------------------------------------------------|-------------------------------|
+| IF(condition, value_if_true, value_if_false)                      | Example: `IF(2>1,"Pass","Fail")`
+| SWITCH(expression, val1, result1, [val2,result2], …, [default])  | Example: `SWITCH(3+2,5,"Apple",7,"Mango",3,"Good","N/A")`
+
+
+
+## 3.3 Supported logical and math functions
 
 <table>
 <tbody>
@@ -258,38 +215,18 @@ PM> Install-Package MathExpressionEval -Version 4.5.0.0
 </tbody>
 </table>
 
-## Supported Constants
+## 3.4 Supported Constants
 
-<table>
-<tbody>
-<tr>
-<th>Constant</th>
-<th>Description</th>
-</tr>
-<tr>
-<td>e</td>
-<td>The value of _e_</td>
-</tr>
-<tr>
-<td>PI</td>
-<td>The value of _PI_</td>
-</tr>
-<tr>
-<td>TRUE</td>
-<td>The boolean true value</td>
-</tr>
-<tr>
-<td>FALSE</td>
-<td>The boolean false value</td>
-</tr>
-<tr>
-<td>NULL</td>
-<td>The null value</td>
-</tr>
-</tbody>
-</table>
+| Constant | Description                                                              |
+|----------|--------------------------------------------------------------------------|
+| e        | The value of _e_
+| PI       | The value of _PI_
+| TRUE     | The boolean true value
+| FALSE    | The boolean false value
+| NULL     | The null value
 
-## Supported text functions
+
+## 3.5 Supported text functions
 
 <table>
 <tbody>
@@ -399,9 +336,98 @@ Example:
 </tbody>
 </table>
 
-# Usage examples
+# 3.6 Supported DateTime functions
 
-## Basic evaluator
+| Function | Description                                                              |
+|----------|--------------------------------------------------------------------------|
+| Today()            | "Today()"
+| Now()              | "Now()"
+| Year(.)            | "Year(Today())"
+| Month(.)           | "Month(Today())"
+| Day(.)             | "Day(Today())"
+| Hour(.)            | "Hour(Today())"
+| Minute(.)          | "Minute(Today())"
+| Second(.)          | "Second(Today())"
+| Weekday(.)         | "Weekday(Today())"
+| AddYears(..)       | "AddYears(Today(), 1)"
+| AddMonths(..)      | "AddMonths(Today(), 1)"
+| AddDays(..)        | "AddDays(Today(), 1)"
+| AddHours(..)       | "AddHours(Today(), 1)"
+| AddMinutes(..)     | "AddMinutes(Today(), 1)"
+| AddSeconds(..)     | "AddSeconds(Today(), 1)"
+| AddDate(.......)   | "AddDate(Today(), 1,0,0,0,0,0)"
+
+
+UnitTest
+
+```csharp
+Assert.AreEqual(DateTime.Today,               new Expression("Today()").Eval<DateTime>());
+Assert.AreEqual(DateTime.Now.Day,             new Expression("Now()").Eval<DateTime>().Day);
+Assert.AreEqual(DateTime.Today.Year,          new Expression("Year(Today())").Eval<int>());
+Assert.AreEqual(DateTime.Today.Month,         new Expression("Month(Today())").Eval<int>());
+Assert.AreEqual(DateTime.Today.Day,           new Expression("Day(Today())").Eval<int>());
+Assert.AreEqual(DateTime.Today.Hour,          new Expression("Hour(Today())").Eval<int>());
+Assert.AreEqual(DateTime.Today.Minute,        new Expression("Minute(Today())").Eval<int>());
+Assert.AreEqual(DateTime.Today.Second,        new Expression("Second(Today())").Eval<int>());
+Assert.AreEqual(DateTime.Today.DayOfWeek,     new Expression("Weekday(Today())").Eval<DayOfWeek>());
+Assert.AreEqual(DateTime.Today.AddYears(1),   new Expression("AddYears(Today(), 1)").Eval<DateTime>());
+Assert.AreEqual(DateTime.Today.AddMonths(1),  new Expression("AddMonths(Today(), 1)").Eval<DateTime>());
+Assert.AreEqual(DateTime.Today.AddDays(1),    new Expression("AddDays(Today(), 1)").Eval<DateTime>());
+Assert.AreEqual(DateTime.Today.AddHours(1),   new Expression("AddHours(Today(), 1)").Eval<DateTime>());
+Assert.AreEqual(DateTime.Today.AddMinutes(1), new Expression("AddMinutes(Today(), 1)").Eval<DateTime>());
+Assert.AreEqual(DateTime.Today.AddSeconds(1), new Expression("AddSeconds(Today(), 1)").Eval<DateTime>());
+Assert.AreEqual(DateTime.Today.AddYears(1),   new Expression("AddDate(Today(), 1,0,0,0,0,0)").Eval<DateTime>());
+
+```
+
+# 3.7 Regist custom functions
+
+MathEval.NET support custom functions:
+
+1. Create class to implements IFunction.
+2. Regist this class to Expresson object.
+3. Write custom function and eval().
+
+Examples:
+
+``` csharp
+using System;
+using System.Collections.Generic;
+using Org.MathEval.Common.Functions;
+using static Org.MathEval.Common;
+public class DateFunctions : IFunction
+{
+    public List<FunctionDef> GetDefs()
+    {
+        return new List<FunctionDef> {
+            new FunctionDef("now",        typeof(DateTime), 0, null),
+            new FunctionDef("year",       typeof(int),      1, typeof(DateTime)),
+            new FunctionDef("AddYears",   typeof(DateTime), 2, typeof(DateTime), typeof(int)),
+        };
+    }
+    public object Execute(List<object> args, ExpressionContext dc, string funcName = "")
+    {
+        var name = funcName.ToLower();
+        switch (name)
+        {
+            case "now":        return DateTime.Now;
+            case "year":       return ToDateTime(args[0]).Year;
+            case "addyears":   return ToDateTime(args[0]).AddYears(ToInt(args[1]));
+        }
+        return DateTime.Now;
+    }
+}
+
+// regist and use this functions
+var expression = new Expression().RegistFunction(new DateFunctions());  // regist date functions
+var dt = expression.SetFormula("Now()").Eval<DateTime>();               // eval now() function
+```
+
+
+
+# 4. Usage examples
+
+## 4.1 Basic evaluator
 ```cs
 using System;
 using org.matheval;
@@ -420,7 +446,7 @@ public class Program
 }
 ```
 
-## Conditional statements
+## 4.2 Conditional statements
 
 ```cs
 using System;
@@ -441,7 +467,7 @@ public class Program
 }
 ```
 
-## Validate expression
+## 4.3 Validate expression
 ```cs
 Expression expression = new Expression("SUM(1,2,3) + true");
 List<String> errors = expression.GetError(); 
@@ -454,7 +480,7 @@ if(errors.Count > 0)
 }	
 ```
 
-## Min, max, sum, avg
+## 4.4 Min, max, sum, avg
 ```cs
 using System;
 using org.matheval;
@@ -481,7 +507,7 @@ public class Program
 	}
 }
 ```
-## Round, floor, ceiling
+## 4.5 Round, floor, ceiling
 ```cs
 using System;
 using org.matheval;
@@ -512,7 +538,7 @@ public class Program
 	}
 }
 ```
-## Trigonometry
+## 4.6 Trigonometry
 ```cs
 using System;
 using org.matheval;
@@ -528,7 +554,7 @@ public class Program
 }
 ```
 
-## Deal with string
+## 4.7 Deal with string
 ```cs
 using System;
 using org.matheval;
@@ -545,7 +571,7 @@ public class Program
 	}
 }
 ```
-## Concatenate strings
+## 4.8 Concatenate strings
 ```cs
 using System;
 using org.matheval;
@@ -561,5 +587,5 @@ public class Program
 }
 ```
 
-## License
+# 5.License
 MIT license

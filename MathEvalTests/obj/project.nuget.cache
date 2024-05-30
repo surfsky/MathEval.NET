@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "FfCWrk89yNnA2bsQS44aY/aT1PqA2JOvyS44cD03RnYIjn4NsdvAuc4H4mCZgo2ntJ9VC52nOxDezv55mBCXQw==",
+  "success": true,
+  "projectFilePath": "\\\\Mac\\Home\\Downloads\\Dev\\240208-OfficeUtils\\MathEval-github\\MathEvalTests\\MathEvalTests.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\CJH\\.nuget\\packages\\microsoft.codecoverage\\15.9.0\\microsoft.codecoverage.15.9.0.nupkg.sha512",
+    "C:\\Users\\CJH\\.nuget\\packages\\microsoft.net.test.sdk\\15.9.0\\microsoft.net.test.sdk.15.9.0.nupkg.sha512",
+    "C:\\Users\\CJH\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.3\\microsoft.netframework.referenceassemblies.1.0.3.nupkg.sha512",
+    "C:\\Users\\CJH\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net45\\1.0.3\\microsoft.netframework.referenceassemblies.net45.1.0.3.nupkg.sha512",
+    "C:\\Users\\CJH\\.nuget\\packages\\mstest.testadapter\\1.3.2\\mstest.testadapter.1.3.2.nupkg.sha512",
+    "C:\\Users\\CJH\\.nuget\\packages\\mstest.testframework\\1.3.2\\mstest.testframework.1.3.2.nupkg.sha512"
+  ],
+  "logs": []
+}

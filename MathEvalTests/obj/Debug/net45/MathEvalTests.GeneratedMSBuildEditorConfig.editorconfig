@@ -1,0 +1,5 @@
+is_global = true
+build_property.RootNamespace = MathEvalTests
+build_property.ProjectDir = \\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEvalTests\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

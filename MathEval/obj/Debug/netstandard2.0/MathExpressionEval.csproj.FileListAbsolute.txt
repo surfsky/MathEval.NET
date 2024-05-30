@@ -1,0 +1,11 @@
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathExpressionEval-github\MathExpressionEval\bin\Debug\netstandard2.0\org.matheval.deps.json
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathExpressionEval-github\MathExpressionEval\bin\Debug\netstandard2.0\org.matheval.dll
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathExpressionEval-github\MathExpressionEval\bin\Debug\netstandard2.0\org.matheval.pdb
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathExpressionEval-github\MathExpressionEval\obj\Debug\netstandard2.0\MathExpressionEval.csproj.AssemblyReference.cache
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathExpressionEval-github\MathExpressionEval\obj\Debug\netstandard2.0\MathExpressionEval.GeneratedMSBuildEditorConfig.editorconfig
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathExpressionEval-github\MathExpressionEval\obj\Debug\netstandard2.0\MathExpressionEval.AssemblyInfoInputs.cache
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathExpressionEval-github\MathExpressionEval\obj\Debug\netstandard2.0\MathExpressionEval.AssemblyInfo.cs
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathExpressionEval-github\MathExpressionEval\obj\Debug\netstandard2.0\MathExpressionEval.csproj.CoreCompileInputs.cache
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathExpressionEval-github\MathExpressionEval\obj\Debug\netstandard2.0\MathExpressionEval.sourcelink.json
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathExpressionEval-github\MathExpressionEval\obj\Debug\netstandard2.0\org.matheval.dll
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathExpressionEval-github\MathExpressionEval\obj\Debug\netstandard2.0\org.matheval.pdb

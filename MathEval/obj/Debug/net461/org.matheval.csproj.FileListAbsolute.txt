@@ -1,0 +1,18 @@
+\\Mac\Downloads\Dev\240208-OfficeUtils\参考\expression-evaluator-c-sharp-main\Math expression eval\org.matheval\bin\Debug\net461\org.matheval.dll
+\\Mac\Downloads\Dev\240208-OfficeUtils\参考\expression-evaluator-c-sharp-main\Math expression eval\org.matheval\bin\Debug\net461\org.matheval.pdb
+\\Mac\Downloads\Dev\240208-OfficeUtils\参考\expression-evaluator-c-sharp-main\Math expression eval\org.matheval\obj\Debug\net461\org.matheval.csproj.AssemblyReference.cache
+\\Mac\Downloads\Dev\240208-OfficeUtils\参考\expression-evaluator-c-sharp-main\Math expression eval\org.matheval\obj\Debug\net461\org.matheval.GeneratedMSBuildEditorConfig.editorconfig
+\\Mac\Downloads\Dev\240208-OfficeUtils\参考\expression-evaluator-c-sharp-main\Math expression eval\org.matheval\obj\Debug\net461\org.matheval.AssemblyInfoInputs.cache
+\\Mac\Downloads\Dev\240208-OfficeUtils\参考\expression-evaluator-c-sharp-main\Math expression eval\org.matheval\obj\Debug\net461\org.matheval.AssemblyInfo.cs
+\\Mac\Downloads\Dev\240208-OfficeUtils\参考\expression-evaluator-c-sharp-main\Math expression eval\org.matheval\obj\Debug\net461\org.matheval.csproj.CoreCompileInputs.cache
+\\Mac\Downloads\Dev\240208-OfficeUtils\参考\expression-evaluator-c-sharp-main\Math expression eval\org.matheval\obj\Debug\net461\org.matheval.dll
+\\Mac\Downloads\Dev\240208-OfficeUtils\参考\expression-evaluator-c-sharp-main\Math expression eval\org.matheval\obj\Debug\net461\org.matheval.pdb
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\_ref\MathEval\MathExpressionEval\org.matheval\obj\Debug\net461\Org.MathEval.csproj.AssemblyReference.cache
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\_ref\MathEval\MathExpressionEval\org.matheval\obj\Debug\net461\Org.MathEval.GeneratedMSBuildEditorConfig.editorconfig
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\_ref\MathEval\MathExpressionEval\org.matheval\obj\Debug\net461\Org.MathEval.AssemblyInfoInputs.cache
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\_ref\MathEval\MathExpressionEval\org.matheval\obj\Debug\net461\Org.MathEval.AssemblyInfo.cs
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\_ref\MathEval\MathExpressionEval\org.matheval\obj\Debug\net461\Org.MathEval.csproj.CoreCompileInputs.cache
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\_ref\MathEval\MathExpressionEval\org.matheval\obj\Debug\net461\org.matheval.dll
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\_ref\MathEval\MathExpressionEval\org.matheval\obj\Debug\net461\org.matheval.pdb
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\_ref\MathEval\MathExpressionEval\org.matheval\bin\Debug\net461\org.matheval.dll
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\_ref\MathEval\MathExpressionEval\org.matheval\bin\Debug\net461\org.matheval.pdb

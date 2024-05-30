@@ -1,0 +1,5 @@
+is_global = true
+build_property.RootNamespace = org.matheval
+build_property.ProjectDir = \\Mac\Downloads\Dev\240208-OfficeUtils\参考\expression-evaluator-c-sharp-main\Math expression eval\org.matheval\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
