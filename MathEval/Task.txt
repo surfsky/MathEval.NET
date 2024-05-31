@@ -7,10 +7,19 @@
         /尝试用缓存 Functions 类，而不是临时创建，可以考虑用Lazy方式创建。
         /尝试增加扩展处理Functions类。实现IFunction即可。
     /支持 !=
+    /支持布尔运算符：!
+    /新增时间处理函数：Date(.), Age(.)
+    /实现 Like 函数
+    /BaseOperator.GetAss() -> GetAssoc()
+    
 
 重构 Expression
     /ExecuteCallFunc 修改传递参数，改为 List<object>，没必要用字典。就是注意下标都要减一。
     /Expression.Gc() -> Clear();
+    /Expression.SetFomular() -> SetFormular();
+
+重构 Node
+    /Node.Iop -> Node.Op
 
 重构 Function
     考虑尝试去除一堆的Consts变量，即 FunctionDef.Name
@@ -31,6 +40,7 @@
 
 /重构 IFunction
     /GetInfo() -> GetDefs();
+
 /重构 Operators
     /Org.MathEval.Node -> Org.MathEval.Nodes
     /Org.MathEval.Implements.Node -> Org.MathEval.Nodes.Node
@@ -38,6 +48,8 @@
     /重构IOperator
     /argsMap 改为 int -> object，简化一堆的Const.Key123456
     /WorkingCulture -> Culture
+
+
 /从 Common 类中拆出 Consts类，并简化命名
 /更改命名空间 org.matheval -> Org.MathEval
 /项目更名为 MathExpressionEval

@@ -117,7 +117,7 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void Math_Operator_Ge_Test()
+        public void Bool_Operator_Ge_Test()
         {
 
             Expression expr1 = new Expression("a >= 1.23");
@@ -137,7 +137,7 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void Math_Operator_Gt_Test()
+        public void Bool_Operator_Gt_Test()
         {
 
             Expression expr1 = new Expression("a > 1.23");
@@ -154,7 +154,7 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void Math_Operator_Le_Test()
+        public void Bool_Operator_Le_Test()
         {
 
             Expression expr1 = new Expression("a <= 1.23");
@@ -166,7 +166,7 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void Math_Operator_Lt_Test()
+        public void Bool_Operator_Lt_Test()
         {
 
             Expression expr1 = new Expression("a < 1.23");
@@ -181,7 +181,7 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void Math_Operator_Eq_Test()
+        public void Bool_Operator_Eq_Test()
         {
 
             Expression expr1 = new Expression("a = null");
@@ -205,36 +205,40 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void Math_Operator_Neq_Test()
+        public void Bool_Operator_Neq_Test()
         {
+            var expr = new Expression("a <> null");
+            Assert.AreEqual(true, expr.Bind("a", 1).Eval<bool>());
 
-            Expression expr1 = new Expression("a <> null");
-            Assert.AreEqual(true, expr1.Bind("a", 1).Eval<bool>());
+            expr.SetFormular("a <> null");
+            Assert.AreEqual(false, expr.Bind("a", null).Eval<bool>());
 
-            Expression expr1b = new Expression("a <> null");
-            Assert.AreEqual(false, expr1b.Bind("a", null).Eval<bool>());
+            expr.SetFormular("a <> 1.23");
+            Assert.AreEqual(false, expr.Bind("a", 1.23).Eval<bool>());
 
-            Expression expr2 = new Expression("a <> 1.23");
-            Assert.AreEqual(false, expr2.Bind("a", 1.23).Eval<bool>());
+            expr.SetFormular("a <> 1.23");
+            Assert.AreEqual(true, expr.Bind("a", 1.22).Eval<bool>());
 
-            Expression expr2b = new Expression("a <> 1.23");
-            Assert.AreEqual(true, expr2b.Bind("a", 1.22).Eval<bool>());
+            expr.SetFormular("a <> 1.23");
+            Assert.AreEqual(true, expr.Bind("a", null).Eval<bool>());
 
-            Expression expr2c = new Expression("a <> 1.23");
-            Assert.AreEqual(true, expr2c.Bind("a", null).Eval<bool>());
+            expr.SetFormular("a <> (373434*13214235.64)");
+            Assert.AreEqual(false, expr.Bind("a", 373434 * 13214235.64).Eval<bool>());
 
-            Expression expr3 = new Expression("a <> (373434*13214235.64)");
-            Assert.AreEqual(false, expr3.Bind("a", 373434 * 13214235.64).Eval<bool>());
+            expr.SetFormular("a <> 1.22");
+            Assert.AreEqual(true, expr.Bind("a", 1.23).Eval<bool>());
 
-            Expression expr4 = new Expression("a <> 1.22");
-            Assert.AreEqual(true, expr4.Bind("a", 1.23).Eval<bool>());
+            expr.SetFormular("a <> b");
+            Assert.AreEqual(false, expr.Bind("a", decimal.MaxValue).Bind("b", decimal.MaxValue).Eval<bool>());
 
-            Expression expr5 = new Expression("a <> b");
-            Assert.AreEqual(false, expr5.Bind("a", decimal.MaxValue).Bind("b", decimal.MaxValue).Eval<bool>());
+            expr.SetFormular("a <> b");
+            Assert.AreEqual(true, expr.Bind("a", decimal.MaxValue).Bind("b", decimal.MaxValue - 1).Eval<bool>());
 
-            Expression expr6 = new Expression("a <> b");
-            Assert.AreEqual(true, expr6.Bind("a", decimal.MaxValue).Bind("b", decimal.MaxValue - 1).Eval<bool>());
+            expr.SetFormular("a != b");
+            Assert.AreEqual(true, expr.Bind("a", 3).Bind("b", 4).Eval<bool>());
 
+            expr.SetFormular("!true");
+            Assert.AreEqual(false, expr.Eval<bool>());
         }
 
         [TestMethod]
@@ -286,16 +290,16 @@ namespace UnitTest
             Expression expr1 = new Expression("6.78-2*3^-1.5+e/pi%3");
             Assert.AreEqual(7.260356m, expr1.Eval<decimal>());
 
-            expr1.SetFomular("6.78-2*3^-1.5+e/pi%3%(tan(pi/1.3)-0.12^-1.3/5)");
+            expr1.SetFormular("6.78-2*3^-1.5+e/pi%3%(tan(pi/1.3)-0.12^-1.3/5)");
             expr1.SetScale(3);
             Assert.AreEqual(3.226m, expr1.Eval<decimal>());
 
-            expr1.SetFomular("5/3*5^pi-1.32*-e%(-3.6*1.78)");
+            expr1.SetFormular("5/3*5^pi-1.32*-e%(-3.6*1.78)");
             expr1.SetScale(7);
             Assert.AreEqual(265.2423742m, expr1.Eval<decimal>());
 
             expr1.SetScale(6);
-            expr1.SetFomular("PI()-+(--+---PI()/3*3)");
+            expr1.SetFormular("PI()-+(--+---PI()/3*3)");
             Assert.AreEqual(6.283185m, expr1.Eval<decimal>());
 
         }
@@ -318,7 +322,17 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void Math_AndOr_Test()
+        public void Bool_Like_Test()
+        {
+            var expr = new Expression();
+            Assert.AreEqual(true, expr.SetFormular("LIKE('Abc', '_bc')").Eval<bool>());
+            Assert.AreEqual(true, expr.SetFormular("LIKE('Abc', '*b*')").Eval<bool>());
+            Assert.AreEqual(true, expr.SetFormular("LIKE('Abc', '%b%')").Eval<bool>());
+            Assert.AreEqual(true, expr.SetFormular("LIKE('Abc', '')").Eval<bool>());
+        }
+
+        [TestMethod]
+        public void Bool_AndOr_Test()
         {
             Expression expr1 = new Expression("true&&false");
             Assert.AreEqual(false, expr1.Eval<bool>());
@@ -338,12 +352,12 @@ namespace UnitTest
             Expression expr6 = new Expression("(a || false) && (2 > b)");
             Assert.AreEqual(false, expr5.Bind("a", false).Bind("b", 1).Eval<bool>());
 
-            expr6.SetFomular("not(x<7 || sqrt(max(x,9,3,min(4,3))) <= 3)");
+            expr6.SetFormular("not(x<7 || sqrt(max(x,9,3,min(4,3))) <= 3)");
             Assert.AreEqual(true, expr6.Bind("x", 22.9m).Eval<bool>());
         }
 
         [TestMethod]
-        public void Math_Ifelse_Test()
+        public void Bool_Ifelse_Test()
         {
             Expression expr1 = new Expression("if(a>b,true,false)");
             Assert.AreEqual(true, expr1.Bind("a", 10).Bind("b", 9).Eval<bool>());
@@ -417,7 +431,7 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void Math_Logical_Test()
+        public void Bool_Logical_Test()
         {
             Expression expr1 = new Expression("AND(2>1,3<9/2)");
             Assert.AreEqual(true, expr1.Eval<bool>());
@@ -479,7 +493,7 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void Math_Trigonometric_Test1()
+        public void Trigonometric_Test1()
         {
             Expression expr1 = new Expression("SIN(PI()/2)");
             Assert.AreEqual(1M, expr1.Eval<decimal>());
@@ -507,7 +521,7 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void Math_Trigonometric_Test2()
+        public void Trigonometric_Test2()
         {
             Expression expr1 = new Expression("ATAN(1)");
             Assert.AreEqual(0.7854M, expr1.SetScale(4).Eval<decimal>());
@@ -544,7 +558,7 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void Math_Trigonometric_Test3()
+        public void Trigonometric_Test3()
         {
             Expression expr1 = new Expression("SQRT(16)");
             Assert.AreEqual(4M, expr1.Eval<decimal>());
@@ -576,7 +590,7 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void Math_Trigonometric_Test4()
+        public void Trigonometric_Test4()
         {
             Expression expr1 = new Expression("EXP(3)");
             Assert.AreEqual(20.085537M, expr1.Eval<decimal>());
@@ -607,31 +621,31 @@ namespace UnitTest
             Expression expr1 = new Expression("CEILING(2.1)");
             Assert.AreEqual(3M, expr1.Eval<decimal>());
 
-            expr1.SetFomular("CEILING(4.5, 1)");
+            expr1.SetFormular("CEILING(4.5, 1)");
             Assert.AreEqual(5M, expr1.Eval<decimal>());
 
-            expr1.SetFomular("CEILING(-2.5, -2)");
+            expr1.SetFormular("CEILING(-2.5, -2)");
             Assert.AreEqual(-4M, expr1.Eval<decimal>());
 
-            expr1.SetFomular("CEILING(4.5, 1)");
+            expr1.SetFormular("CEILING(4.5, 1)");
             Assert.AreEqual(5M, expr1.Eval<decimal>());
 
-            expr1.SetFomular("FLOOR(3.7)");
+            expr1.SetFormular("FLOOR(3.7)");
             Assert.AreEqual(3M, expr1.Eval<decimal>());
 
-            expr1.SetFomular("FLOOR(3.7,2)");
+            expr1.SetFormular("FLOOR(3.7,2)");
             Assert.AreEqual(2M, expr1.Eval<decimal>());
 
-            expr1.SetFomular("FLOOR(-2.5,-2)");
+            expr1.SetFormular("FLOOR(-2.5,-2)");
             Assert.AreEqual(-2M, expr1.Eval<decimal>());
 
-            expr1.SetFomular("ROUND(20.085537,2)");
+            expr1.SetFormular("ROUND(20.085537,2)");
             Assert.AreEqual(20.09M, expr1.Eval<decimal>());
 
             /* expr1.SetFomular("ROUND(20126.08,-1)");
              Assert.AreEqual(20130M, expr1.Eval<decimal>());*/
 
-            expr1.SetFomular("POWER(-2, 3)");
+            expr1.SetFormular("POWER(-2, 3)");
             Assert.AreEqual(-8M, expr1.Eval<decimal>());
         }
 
@@ -643,41 +657,41 @@ namespace UnitTest
             Expression expr1 = new Expression("MOD(EXP(5.4),1.3)*5/_a_*3^PI()");
             Assert.AreEqual(21.366845M, expr1.Bind("_a_", 3).Eval<decimal>());
 
-            expr1.SetFomular("3^PI()^0.1");
+            expr1.SetFormular("3^PI()^0.1");
             Assert.AreEqual(3.42758M, expr1.Eval<decimal>());
 
-            expr1.SetFomular("sin(x)^2+cos(x)^2");
+            expr1.SetFormular("sin(x)^2+cos(x)^2");
             Assert.AreEqual(1M, expr1.Bind("x", 0.1).Eval<decimal>());
 
-            expr1.SetFomular("1+cot(x)^2=1/sin(x)^2");
+            expr1.SetFormular("1+cot(x)^2=1/sin(x)^2");
             Assert.AreEqual(true, expr1.Bind("x", randomAngle).Eval<bool>());
 
-            expr1.SetFomular("1+cot(x)^2=1/sin(x)^2");
+            expr1.SetFormular("1+cot(x)^2=1/sin(x)^2");
             Assert.AreEqual(true, expr1.Bind("x", randomAngle).Eval<bool>());
 
-            expr1.SetFomular("sin(y)^6+cos(y)^6 = (sin(y)^2+cos(y)^2)*(sin(y)^4-sin(y)^2*cos(y)^2+cos(y)^4)");
+            expr1.SetFormular("sin(y)^6+cos(y)^6 = (sin(y)^2+cos(y)^2)*(sin(y)^4-sin(y)^2*cos(y)^2+cos(y)^4)");
             Assert.AreEqual(true, expr1.Bind("y", randomAngle).Eval<bool>());
 
-            expr1.SetFomular("tan(a)^3-((3*sin(a)-sin(3*a))/(3*cos(a)+cos(3*a)))");
+            expr1.SetFormular("tan(a)^3-((3*sin(a)-sin(3*a))/(3*cos(a)+cos(3*a)))");
             Assert.AreEqual(0, expr1.Bind("a", Math.PI / 6).Eval<decimal>());
 
-            expr1.SetFomular("tan(a)^3-((3*sin(a)-sin(3*a))/(3*cos(a)+cos(3*a)))");
+            expr1.SetFormular("tan(a)^3-((3*sin(a)-sin(3*a))/(3*cos(a)+cos(3*a)))");
             Assert.AreEqual(0, expr1.Bind("a", randomAngle).Eval<decimal>());
 
-            expr1.SetFomular("if(tan(a)^3-((3*sin(a)-sin(3*a))/(3*cos(a)+cos(3*a)))==0,if(sin(a) - cos(a) = SQRT(2) * sin(a - pi / 4),true,false),false)");
+            expr1.SetFormular("if(tan(a)^3-((3*sin(a)-sin(3*a))/(3*cos(a)+cos(3*a)))==0,if(sin(a) - cos(a) = SQRT(2) * sin(a - pi / 4),true,false),false)");
             Assert.AreEqual(true, expr1.Bind("a", randomAngle).Eval<bool>());
 
-            expr1.SetFomular("sin(a) - cos(a) = SQRT(2) * sin(a - pi / 4)");
+            expr1.SetFormular("sin(a) - cos(a) = SQRT(2) * sin(a - pi / 4)");
             Assert.AreEqual(true, expr1.Bind("a", randomAngle).Eval<bool>());
 
-            expr1.SetFomular("(a>b)||(PI()<(d-e+power(f,2)))&&(4+6>8)");
+            expr1.SetFormular("(a>b)||(PI()<(d-e+power(f,2)))&&(4+6>8)");
             expr1.Bind("a", 3).Bind("b", 2).Bind("d", 21.45m).Bind("e", 0.2).Bind("f", 0.1);
             Assert.AreEqual(true, expr1.Eval<bool>());
 
-            expr1.SetFomular("(3.4 + -4.1) / 2");
+            expr1.SetFormular("(3.4 + -4.1) / 2");
             Assert.AreEqual(-0.35m, expr1.Eval<decimal>());
 
-            expr1.SetFomular("SQRT(a^2 + b^2)");
+            expr1.SetFormular("SQRT(a^2 + b^2)");
             expr1.Bind("a", 2.4).Bind("b", 9.253);
             Assert.AreEqual(9.559185m, expr1.Eval<decimal>());
 
@@ -732,6 +746,9 @@ namespace UnitTest
             Assert.AreEqual(DateTime.Today.Hour,          new Expression("Hour(Today())").Eval<int>());
             Assert.AreEqual(DateTime.Today.Minute,        new Expression("Minute(Today())").Eval<int>());
             Assert.AreEqual(DateTime.Today.Second,        new Expression("Second(Today())").Eval<int>());
+            Assert.AreEqual(0,                            new Expression("Age(Today())").Eval<int>());
+            Assert.AreEqual(DateTime.Parse("2020-01-01"), new Expression("Date('2020-01-01')").Eval<DateTime>());
+
             Assert.AreEqual(DateTime.Today.DayOfWeek,     new Expression("Weekday(Today())").Eval<DayOfWeek>());
             Assert.AreEqual(DateTime.Today.AddYears(1),   new Expression("AddYears(Today(), 1)").Eval<DateTime>());
             Assert.AreEqual(DateTime.Today.AddMonths(1),  new Expression("AddMonths(Today(), 1)").Eval<DateTime>());
@@ -861,19 +878,19 @@ namespace UnitTest
             Expression expr1 = new Expression("left(\"helloword\",2)");
             Assert.AreEqual("he", expr1.Eval<string>());
 
-            expr1.SetFomular("left(a,20)");
+            expr1.SetFormular("left(a,20)");
             Assert.AreEqual("helloword", expr1.Bind("a", "helloword").Eval<string>());
 
-            expr1.SetFomular("right(\"helloword\",2)");
+            expr1.SetFormular("right(\"helloword\",2)");
             Assert.AreEqual("rd", expr1.Eval<string>());
 
-            expr1.SetFomular("right(\"helloword\",20)");
+            expr1.SetFormular("right(\"helloword\",20)");
             Assert.AreEqual("helloword", expr1.Eval<string>());
 
-            expr1.SetFomular("right(\"helloword\",9)");
+            expr1.SetFormular("right(\"helloword\",9)");
             Assert.AreEqual("helloword", expr1.Eval<string>());
 
-            expr1.SetFomular("right(\"hello\nword\",9)");
+            expr1.SetFormular("right(\"hello\nword\",9)");
             Assert.AreEqual("ello\nword", expr1.Eval<string>());
 
         }
@@ -884,37 +901,37 @@ namespace UnitTest
             Expression expr1 = new Expression("MID(\"abcd\",1,2)");
             Assert.AreEqual("ab", expr1.Eval<string>());
 
-            expr1.SetFomular("MID(\"abcd\",2,1)");
+            expr1.SetFormular("MID(\"abcd\",2,1)");
             Assert.AreEqual("b", expr1.Eval<string>());
 
-            expr1.SetFomular("MID(\"abcd\",1,20)");
+            expr1.SetFormular("MID(\"abcd\",1,20)");
             Assert.AreEqual("abcd", expr1.Eval<string>());
 
-            expr1.SetFomular("MID(\"abcd\",-1,20)");
+            expr1.SetFormular("MID(\"abcd\",-1,20)");
             Assert.AreEqual("", expr1.Eval<string>());
 
-            expr1.SetFomular("MID(\"abcd\",10,20)");
+            expr1.SetFormular("MID(\"abcd\",10,20)");
             Assert.AreEqual("", expr1.Eval<string>());
 
-            expr1.SetFomular("MID(\"abcd\",0,20)");
+            expr1.SetFormular("MID(\"abcd\",0,20)");
             Assert.AreEqual("", expr1.Eval<string>());
 
-            expr1.SetFomular("MID(\"abcd\",4,20)");
+            expr1.SetFormular("MID(\"abcd\",4,20)");
             Assert.AreEqual("d", expr1.Eval<string>());
 
-            expr1.SetFomular("MID(\"zofH4xQcr2KGLrh0Sg9LkMQj0fJLJGgHErVeS1Q1hdoj\nJuI6c9ANVb\nnbF9jIkrsDiV34M32XkobJ2XPubJeJgLueRA2u73fgYPrxLEiO3v2sb98NK9vgWVw6e6OYSuowaWMCSbQGYemqaieWP724mQYW7jTu2sLO\",100,200)");
+            expr1.SetFormular("MID(\"zofH4xQcr2KGLrh0Sg9LkMQj0fJLJGgHErVeS1Q1hdoj\nJuI6c9ANVb\nnbF9jIkrsDiV34M32XkobJ2XPubJeJgLueRA2u73fgYPrxLEiO3v2sb98NK9vgWVw6e6OYSuowaWMCSbQGYemqaieWP724mQYW7jTu2sLO\",100,200)");
             Assert.AreEqual("PrxLEiO3v2sb98NK9vgWVw6e6OYSuowaWMCSbQGYemqaieWP724mQYW7jTu2sLO", expr1.Eval<string>());
 
-            expr1.SetFomular("LPAD(\"1\",10,\"0\")");
+            expr1.SetFormular("LPAD(\"1\",10,\"0\")");
             Assert.AreEqual("0000000001", expr1.Eval<string>());
 
-            expr1.SetFomular("RPAD(\"1\",10,\"0\")");
+            expr1.SetFormular("RPAD(\"1\",10,\"0\")");
             Assert.AreEqual("1000000000", expr1.Eval<string>());
 
-            expr1.SetFomular("RPAD(\"1\",10,\"\")");
+            expr1.SetFormular("RPAD(\"1\",10,\"\")");
             Assert.AreEqual("1", expr1.Eval<string>());
 
-            expr1.SetFomular("RPAD(\"\",10,\"0\")");
+            expr1.SetFormular("RPAD(\"\",10,\"0\")");
             Assert.AreEqual("0000000000", expr1.Eval<string>());
 
         }
@@ -925,13 +942,13 @@ namespace UnitTest
             Expression expr1 = new Expression("reverse(\"abcd\")");
             Assert.AreEqual("dcba", expr1.Eval<string>());
 
-            expr1.SetFomular("left(reverse(\"abcd\"),2)");
+            expr1.SetFormular("left(reverse(\"abcd\"),2)");
             Assert.AreEqual("dc", expr1.Eval<string>());
 
-            expr1.SetFomular("reverse(\"01%663854137#90644.7;973030 4637515397360822@9\")");
+            expr1.SetFormular("reverse(\"01%663854137#90644.7;973030 4637515397360822@9\")");
             Assert.AreEqual("9@2280637935157364 030379;7.44609#731458366%10", expr1.Eval<string>());
 
-            expr1.SetFomular("left(reverse(\"abcd\"),2)==\"dc\"");
+            expr1.SetFormular("left(reverse(\"abcd\"),2)==\"dc\"");
             Assert.AreEqual(true, expr1.Eval<bool>());
         }
 
@@ -941,16 +958,16 @@ namespace UnitTest
             Expression expr1 = new Expression("ISNUMBER(\"0.23\")");
             Assert.AreEqual(true, expr1.Eval<bool>());
 
-            expr1.SetFomular("ISNUMBER(\"0.2a3\")");
+            expr1.SetFormular("ISNUMBER(\"0.2a3\")");
             Assert.AreEqual(false, expr1.Eval<bool>());
 
-            expr1.SetFomular("IF(ISNUMBER(\"0.2a3\")==FALSE,TRUE,false)");
+            expr1.SetFormular("IF(ISNUMBER(\"0.2a3\")==FALSE,TRUE,false)");
             Assert.AreEqual(true, expr1.Eval<bool>());
 
-            expr1.SetFomular("ISNUMBER(\"\")");
+            expr1.SetFormular("ISNUMBER(\"\")");
             Assert.AreEqual(false, expr1.Eval<bool>());
 
-            expr1.SetFomular("ISNUMBER(null)");
+            expr1.SetFormular("ISNUMBER(null)");
             Assert.AreEqual(false, expr1.Eval<bool>());
 
         }
@@ -961,10 +978,10 @@ namespace UnitTest
             Expression expr1 = new Expression("LOWER(\"aBc\")");
             Assert.AreEqual("abc", expr1.Eval<string>());
 
-            expr1.SetFomular("UPPER(\"aBc\")");
+            expr1.SetFormular("UPPER(\"aBc\")");
             Assert.AreEqual("ABC", expr1.Eval<string>());
 
-            expr1.SetFomular("UPPER(\"neW york\")");
+            expr1.SetFormular("UPPER(\"neW york\")");
             Assert.AreEqual("NEW YORK", expr1.Eval<string>());
         }
 
@@ -1035,28 +1052,28 @@ namespace UnitTest
         public void Text_Function_Text_Test()
         {
             Expression expr1 = new Expression();
-            expr1.SetFomular("TEXT(0.1,\"h\")");
+            expr1.SetFormular("TEXT(0.1,\"h\")");
             Assert.AreEqual("2", expr1.Eval<string>());
 
-            expr1.SetFomular("TEXT(2.61,\"[hh]\")");
+            expr1.SetFormular("TEXT(2.61,\"[hh]\")");
             Assert.AreEqual("62", expr1.Eval<string>());
 
-            expr1.SetFomular("TEXT(2.61,\"hh-mm-ss\")");
+            expr1.SetFormular("TEXT(2.61,\"hh-mm-ss\")");
             Assert.AreEqual("14-38-24", expr1.Eval<string>());
 
-            expr1.SetFomular("TEXT(123.005)");
+            expr1.SetFormular("TEXT(123.005)");
             Assert.AreEqual("123.005", expr1.Eval<string>());
 
-            expr1.SetFomular("TEXT(1234.567,\"$#,##0.00\")");
+            expr1.SetFormular("TEXT(1234.567,\"$#,##0.00\")");
             Assert.AreEqual("$1,234.57", expr1.Eval<string>());
 
-            expr1.SetFomular("TEXT(0.285,\"0.0%\")");
+            expr1.SetFormular("TEXT(0.285,\"0.0%\")");
             Assert.AreEqual("28.5%", expr1.Eval<string>());
 
-            expr1.SetFomular("TEXT(122*100000,\"0.00E+00\")");
+            expr1.SetFormular("TEXT(122*100000,\"0.00E+00\")");
             Assert.AreEqual("1.22E+07", expr1.Eval<string>());
 
-            expr1.SetFomular("TEXT(122*100000,\"uyfeg\")");
+            expr1.SetFormular("TEXT(122*100000,\"uyfeg\")");
             Assert.AreEqual("uyfeg", expr1.Eval<string>());
         }
 
@@ -1066,13 +1083,13 @@ namespace UnitTest
             Expression expr1 = new Expression("CHAR(97)");
             Assert.AreEqual("a", expr1.Eval<string>());
 
-            expr1.SetFomular("CODE(\"a\")");
+            expr1.SetFormular("CODE(\"a\")");
             Assert.AreEqual(97, expr1.Eval<int>());
 
-            expr1.SetFomular("CODE(\"\t\")");
+            expr1.SetFormular("CODE(\"\t\")");
             Assert.AreEqual(9, expr1.Eval<int>());
 
-            expr1.SetFomular("CHAR(0)");
+            expr1.SetFormular("CHAR(0)");
             Assert.AreEqual("\0", expr1.Eval<string>());
         }
 
@@ -1082,13 +1099,13 @@ namespace UnitTest
             Expression expr1 = new Expression("REPLACE(\"ABC123\",4,3,\"456\")");
             Assert.AreEqual("ABC456", expr1.Eval<string>());
 
-            expr1.SetFomular("REPLACE(\"123-455-3321\",\"-\",\"\")");
+            expr1.SetFormular("REPLACE(\"123-455-3321\",\"-\",\"\")");
             Assert.AreEqual("1234553321", expr1.Eval<string>());
 
-            expr1.SetFomular("REPLACE(\"123-455-3321\",\"-\",\"@\")");
+            expr1.SetFormular("REPLACE(\"123-455-3321\",\"-\",\"@\")");
             Assert.AreEqual("123@455@3321", expr1.Eval<string>());
 
-            expr1.SetFomular("SUBSTITUTE(\"123-455-3321\",\"-\",\"\")");
+            expr1.SetFormular("SUBSTITUTE(\"123-455-3321\",\"-\",\"\")");
             Assert.AreEqual("1234553321", expr1.Eval<string>());
 
         }
@@ -1099,43 +1116,43 @@ namespace UnitTest
             Expression expr1 = new Expression("FIND(\"ab\",\"ABCDabcABCabc\",6)");
             Assert.AreEqual(11, expr1.Eval<int>());
 
-            expr1.SetFomular("FIND(\"a\",\"ABCDabcABCabc\")");
+            expr1.SetFormular("FIND(\"a\",\"ABCDabcABCabc\")");
             Assert.AreEqual(5, expr1.Eval<int>());
 
-            expr1.SetFomular("FIND(\"\",\"ABCDabcABCabc\")");
+            expr1.SetFormular("FIND(\"\",\"ABCDabcABCabc\")");
             Assert.AreEqual(1, expr1.Eval<int>());
 
-            expr1.SetFomular("FIND(\"\",\"\")");
+            expr1.SetFormular("FIND(\"\",\"\")");
             Assert.AreEqual(1, expr1.Eval<int>());
 
-            expr1.SetFomular("SEARCH(\"A\",\"ABC\")");
+            expr1.SetFormular("SEARCH(\"A\",\"ABC\")");
             Assert.AreEqual(1, expr1.Eval<int>());
 
-            expr1.SetFomular("SEARCH(\"A\",\"AEHABC\",4)");
+            expr1.SetFormular("SEARCH(\"A\",\"AEHABC\",4)");
             Assert.AreEqual(4, expr1.Eval<int>());
 
-            expr1.SetFomular("SEARCH(\"A\n\",\"AEHA\nBC\")");
+            expr1.SetFormular("SEARCH(\"A\n\",\"AEHA\nBC\")");
             Assert.AreEqual(4, expr1.Eval<int>());
 
-            expr1.SetFomular("SEARCH(\"Ax\",\"AEHABC\",4)");
+            expr1.SetFormular("SEARCH(\"Ax\",\"AEHABC\",4)");
             Assert.AreEqual(-1, expr1.Eval<int>());
 
-            expr1.SetFomular("SEARCH(\"\",\"\",4)");
+            expr1.SetFormular("SEARCH(\"\",\"\",4)");
             Assert.AreEqual(-1, expr1.Eval<int>());
 
-            expr1.SetFomular("SEARCH(\"\",\"\")");
+            expr1.SetFormular("SEARCH(\"\",\"\")");
             Assert.AreEqual(1, expr1.Eval<int>());
 
-            expr1.SetFomular("SEARCH(\"Sample\",\"this is a sample string. Just a sample\")");
+            expr1.SetFormular("SEARCH(\"Sample\",\"this is a sample string. Just a sample\")");
             Assert.AreEqual(11, expr1.Eval<int>());
 
-            expr1.SetFomular("FIND(\"Sample\",\"this is a sample string. Just a sample\")");
+            expr1.SetFormular("FIND(\"Sample\",\"this is a sample string. Just a sample\")");
             Assert.AreEqual(-1, expr1.Eval<int>());
 
-            expr1.SetFomular("IF(SEARCH(\"A\",\"AEHABC\",4)>1,CONCAT(LEFT(name,2),\"WORD\"),\"N/A\")");
+            expr1.SetFormular("IF(SEARCH(\"A\",\"AEHABC\",4)>1,CONCAT(LEFT(name,2),\"WORD\"),\"N/A\")");
             Assert.AreEqual("HEWORD", expr1.Bind("name", "HELLO").Eval<string>());
 
-            expr1.SetFomular("IF(SEARCH(\"A\",\"AEHABC\",4)>100,CONCAT(LEFT(name,2),\"WORD\"),\"N/A\")");
+            expr1.SetFormular("IF(SEARCH(\"A\",\"AEHABC\",4)>100,CONCAT(LEFT(name,2),\"WORD\"),\"N/A\")");
             Assert.AreEqual("N/A", expr1.Bind("name", "HELLO").Eval<string>());
         }
 
@@ -1145,13 +1162,13 @@ namespace UnitTest
             Expression expr1 = new Expression("CONCAT(\"ab\",\"ABCDabcABCabc\")");
             Assert.AreEqual("abABCDabcABCabc", expr1.Eval<string>());
 
-            expr1.SetFomular("CONCAT(\"\",\"ABCDabc\nAB;C\"\"abc\")");
+            expr1.SetFormular("CONCAT(\"\",\"ABCDabc\nAB;C\"\"abc\")");
             Assert.AreEqual("ABCDabc\nAB;C\"abc", expr1.Eval<string>());
 
-            expr1.SetFomular("CONCAT(null,\"ABCDabc\nAB;C\"\"abc\")");
+            expr1.SetFormular("CONCAT(null,\"ABCDabc\nAB;C\"\"abc\")");
             Assert.AreEqual("ABCDabc\nAB;C\"abc", expr1.Eval<string>());
 
-            expr1.SetFomular("CONCAT(null,null)");
+            expr1.SetFormular("CONCAT(null,null)");
             Assert.AreEqual("", expr1.Eval<string>());
         }
 
@@ -1161,13 +1178,13 @@ namespace UnitTest
             Expression expr1 = new Expression("ISBLANK(\"ab\")");
             Assert.AreEqual(false, expr1.Eval<bool>());
 
-            expr1.SetFomular("ISBLANK(\"\")");
+            expr1.SetFormular("ISBLANK(\"\")");
             Assert.AreEqual(true, expr1.Eval<bool>());
 
-            expr1.SetFomular("ISBLANK(null)");
+            expr1.SetFormular("ISBLANK(null)");
             Assert.AreEqual(true, expr1.Eval<bool>());
 
-            expr1.SetFomular("ISBLANK(\"\n\")");
+            expr1.SetFormular("ISBLANK(\"\n\")");
             Assert.AreEqual(false, expr1.Eval<bool>());
         }
 
@@ -1183,7 +1200,7 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void Or_Operator_Test()
+        public void Bool_Or_Operator_Test()
         {
             // false, false = false
             var expr = new Expression("OR (a>0, b>0)")

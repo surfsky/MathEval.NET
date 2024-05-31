@@ -8,24 +8,18 @@ namespace Org.MathEval.Nodes
     /// </summary>
     public class UnaryNode : Node
     {
-        /// <summary>
-        /// Expr
-        /// </summary>
+        /// <summary>Expr</summary>
         public Node Expr;
 
-        /// <summary>
-        /// Iop
-        /// </summary>
-        public IOperator Iop;
+        /// <summary>Iop</summary>
+        public IOperator Op;
 
-        /// <summary>
-        /// Initializes a new instance structure to a specified type IOperator iop and type Node expr
-        /// </summary>
-        /// <param name="iop">iop</param>
+        /// <summary>Initializes a new instance structure to a specified type IOperator iop and type Node expr</summary>
+        /// <param name="op">iop</param>
         /// <param name="expr">expr</param>
-        public UnaryNode(IOperator iop, Node expr) : base(typeof(decimal))
+        public UnaryNode(IOperator op, Node expr) : base(typeof(decimal))
         {
-            this.Iop = iop;
+            this.Op = op;
             this.Expr = expr;
         }
     }

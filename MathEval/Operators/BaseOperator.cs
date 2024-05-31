@@ -31,19 +31,13 @@ namespace Org.MathEval.Operators
     /// </summary>
     public abstract class BaseOperator : IOperator
     {
-        /// <summary>
-        /// Op
-        /// </summary>
+        /// <summary>Operator</summary>
         public string Op { get; set; }
 
-        /// <summary>
-        /// Prec
-        /// </summary>
+        /// <summary>Prec</summary>
         public int Prec { get; set; }
 
-        /// <summary>
-        /// Calculate
-        /// </summary>
+        /// <summary>Calculate</summary>
         /// <param name="left">left</param>
         /// <param name="right">right</param>
         /// <param name="dc">dc</param>
@@ -53,36 +47,28 @@ namespace Org.MathEval.Operators
             return new NotImplementedException();
         }
 
-        /// <summary>
-        /// Get Ass
-        /// </summary>
+        /// <summary>Get Ass</summary>
         /// <returns>Value is type enum Assoc</returns>
-        public virtual Assoc GetAss()
+        public virtual Assoc GetAssoc()
         {
             throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// Get Op
-        /// </summary>
+        /// <summary>Get Op</summary>
         /// <returns>Value is type string</returns>
         public virtual string GetOp()
         {
             return Op;
         }
 
-        /// <summary>
-        /// Get Prec
-        /// </summary>
+        /// <summary>Get Prec</summary>
         /// <returns>Value is type int</returns>
         public virtual int GetPrec()
         {
             return Prec;
         }
 
-        /// <summary>
-        /// Validate
-        /// </summary>
+        /// <summary>Validate</summary>
         /// <returns>Value is System.Type</returns>
         public virtual Type Validate(Type typeLeft, Type typeRight)
         {

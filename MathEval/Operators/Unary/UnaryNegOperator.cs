@@ -33,18 +33,14 @@ namespace Org.MathEval.Operators.Unary
     /// </summary>
     public class UnaryNegOperator : AbstractUnaryOperator
     {
-        /// <summary>
-        /// Initializes a new instance structure to a specified type string value and type int value
-        /// </summary>
+        /// <summary>Initializes a new instance structure to a specified type string value and type int value</summary>
         /// <param name="op">op</param>
         /// <param name="precedence">precedence</param>
         public UnaryNegOperator(string op, int precedence) : base(op, precedence)
         {
         }
 
-        /// <summary>
-        /// Calculate
-        /// </summary>
+        /// <summary>Calculate</summary>
         /// <param name="left">left</param>
         /// <param name="right">right</param>
         /// <param name="dc">dc</param>
@@ -53,10 +49,7 @@ namespace Org.MathEval.Operators.Unary
         {
             base.Calculate(left, right, dc);
             if (left is decimal)
-            {
-                decimal retValue = -(decimal)left;
-                return retValue;
-            }
+                return  -(decimal)left;
             throw new Exception(Consts.MSG_UNARY_INVALID);
         }
     }

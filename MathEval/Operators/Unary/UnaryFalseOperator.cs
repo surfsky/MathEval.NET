@@ -1,4 +1,5 @@
-﻿/*
+﻿
+/*
     The MIT License
 
     Copyright (c) 2021 MathEval.org
@@ -23,36 +24,33 @@
 */
 using Org.MathEval;
 using System;
-using System.Collections.Generic;
 
-namespace Org.MathEval.Functions
+namespace Org.MathEval.Operators.Unary
 {
     /// <summary>
-    /// Combines the text from multiple strings
-    /// CONCAT("A","B","C") -> ABC
+    /// Unary negative operator
+    /// !true -> false
     /// </summary>
-    public class ConcatFunction : IFunction
+    public class UnaryFalseOperator : AbstractUnaryOperator
     {
-        /// <summary>Get Information</summary>
-        /// <returns>FunctionDefs</returns>
-        public List<FunctionDef> GetDefs()
+        /// <summary>Initializes a new instance structure to a specified type string value and type int value</summary>
+        /// <param name="op">op</param>
+        /// <param name="precedence">precedence</param>
+        public UnaryFalseOperator(string op, int precedence) : base(op, precedence)
         {
-            return new List<FunctionDef> { new FunctionDef(Consts.Concat, typeof(string), -1, new Type[] { typeof(Object) }) };
         }
 
-        /// <summary>Execute</summary>
-        /// <param name="args">args</param>
-        /// <param name="dc">expression context</param>
-        /// <param name="funcName">function name</param>
-        /// <returns>Value</returns>
-        public object Execute(List<object> args, ExpressionContext dc, string funcName = "")
+        /// <summary>Calculate</summary>
+        /// <param name="left">left</param>
+        /// <param name="right">right</param>
+        /// <param name="dc">dc</param>
+        /// <returns>Calculate value</returns>
+        public override object Calculate(object left, object right, ExpressionContext dc)
         {
-            string value = string.Empty;
-            foreach (Object item in args)
-            {
-                value += Common.ToString(item, dc.Culture);
-            }
-            return value;
+            //base.Calculate(left, right, dc);
+            if (left is bool)
+                return !(bool)left;
+            throw new Exception(Consts.MSG_UNARY_INVALID);
         }
     }
 }

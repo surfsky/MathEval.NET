@@ -47,7 +47,7 @@ namespace Org.MathEval.Operators
         /// Get Ass
         /// </summary>
         /// <returns>Value is type enum Assoc</returns>
-        Assoc GetAss();
+        Assoc GetAssoc();
 
         /// <summary>
         /// Calculate

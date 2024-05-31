@@ -166,9 +166,9 @@ namespace Org.MathEval
         }
 
         /// <summary>Set Input fomular text for current expression instance</summary>
-        /// <param name="formular">Input fomular text or math expression string</param>
+        /// <param name="formular">Input formular text or math expression string</param>
         /// <returns>Expression instance</returns>
-        public Expression SetFomular(string formular)
+        public Expression SetFormular(string formular)
         {
             this.Clear();
             this.GetParser().SetFomular(formular);
@@ -367,13 +367,15 @@ namespace Org.MathEval
 
             // evaluate
             object result = this.VisitNode(Root);
-            //Convert all numeric type to decimal
+
+
+            // Convert all numeric type to decimal
             if (Common.IsNumber(result) && !(typeof(T) == typeof(DateTime) || typeof(T) == typeof(TimeSpan)))
             {
                 result = Common.ToDecimal(result, Dc.Culture);
                 result = Common.Round(result, this.Dc);
             }
-            //convert decimal to appropiate numeric type
+            // convert decimal to appropiate numeric type
             if (result is decimal && typeof(T) == typeof(int))
             {
                 result = Decimal.ToInt32(((decimal)result));
@@ -386,7 +388,7 @@ namespace Org.MathEval
             {
                 result = Decimal.ToDouble(((decimal)result));
             }
-            //convert object to expected type and return
+            // convert object to expected type and return
             return (T)Convert.ChangeType(result, typeof(T));
         }
 
@@ -534,7 +536,7 @@ namespace Org.MathEval
             {
                 UnaryNode unaryNode = (UnaryNode)root;
                 Object left = this.VisitNode(unaryNode.Expr);
-                return unaryNode.Iop.Calculate(left, null, Dc);
+                return unaryNode.Op.Calculate(left, null, Dc);
             }
             else if (root is NullNode)
             {

@@ -71,7 +71,7 @@ namespace Org.MathEval
         public const string EqsOperator = "==";
         public const string EqOperator = "=";
         public const string NeqOperator = "!=";
-        public const string Neq1Operator = "<>";
+        public const string NeqOperator2 = "<>";
         public const string LtOperator = "<";
         public const string LeOperator = "<=";
         public const string GtOperator = ">";
@@ -82,6 +82,7 @@ namespace Org.MathEval
         public const string MulOperator = "*";
         public const string DivOperator = "/";
         public const string RemainderOperator = "%";
+        public const string UnaryFalseOperator = "!";
         public const string UnaryPosOperator = "+";
         public const string UnaryNegOperator = "-";
         public const string PowerOperator = "^";

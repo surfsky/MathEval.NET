@@ -162,9 +162,10 @@ namespace Org.MathEval
             Constants.Add(constantName.ToLowerInvariant(), value);
         }
 
-        /// <summary>
-        /// Init Operators
-        /// </summary>
+        //-------------------------------------------------
+        // Init parser
+        //-------------------------------------------------
+        /// <summary>Init Operators</summary>
         private void InitOperators()
         {
             AddOperator(new OrOperator(Consts.OrOperator, 100, Assoc.LEFT));
@@ -172,7 +173,7 @@ namespace Org.MathEval
             AddOperator(new EqOperator(Consts.EqOperator, 300, Assoc.LEFT));
             AddOperator(new EqOperator(Consts.EqsOperator, 300, Assoc.LEFT));
             AddOperator(new NeqOperator(Consts.NeqOperator, 300, Assoc.LEFT));
-            AddOperator(new NeqOperator(Consts.Neq1Operator, 300, Assoc.LEFT));
+            AddOperator(new NeqOperator(Consts.NeqOperator2, 300, Assoc.LEFT));
             AddOperator(new LtOperator(Consts.LtOperator, 400, Assoc.LEFT));
             AddOperator(new LeOperator(Consts.LeOperator, 400, Assoc.LEFT));
             AddOperator(new GtOperator(Consts.GtOperator, 400, Assoc.LEFT));
@@ -183,14 +184,13 @@ namespace Org.MathEval
             AddOperator(new MulOperator(Consts.MulOperator, 600, Assoc.LEFT));
             AddOperator(new DivOperator(Consts.DivOperator, 600, Assoc.LEFT));
             AddOperator(new RemainderOperator(Consts.RemainderOperator, 600, Assoc.LEFT));
+            AddUnaryOperator(new UnaryFalseOperator(Consts.UnaryFalseOperator, 700));
             AddUnaryOperator(new UnaryPosOperator(Consts.UnaryPosOperator, 700));
             AddUnaryOperator(new UnaryNegOperator(Consts.UnaryNegOperator, 700));
             AddOperator(new PowerOperator(Consts.PowerOperator, 800, Assoc.RIGHT));
         }
 
-        /// <summary>
-        /// Init Constants
-        /// </summary>
+        /// <summary>Init Constants</summary>
         private void InitConstants()
         {
             AddConstant("e", Math.E);
@@ -486,7 +486,7 @@ namespace Org.MathEval
                     if (iopNext == null || 
                         !(iopCurr.GetPrec() < iopNext.GetPrec() ||
                         (iopCurr.GetPrec() == iopNext.GetPrec() && 
-                        iopNext.GetAss() == Assoc.RIGHT)))
+                        iopNext.GetAssoc() == Assoc.RIGHT)))
                     {
                         break;
                     }

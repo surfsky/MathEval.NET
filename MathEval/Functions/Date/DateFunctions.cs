@@ -1,7 +1,7 @@
 ﻿/*
     The MIT License
 
-    Copyright (c) 2021 MathEval.org
+    Copyright (c) 2024 SURFSKY
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -42,12 +42,14 @@ namespace Org.MathEval.Functions
             return new List<FunctionDef> {
                 new FunctionDef("today",      typeof(DateTime), 0, null),
                 new FunctionDef("now",        typeof(DateTime), 0, null),
+                new FunctionDef("date",       typeof(DateTime), 1, typeof(string)),
                 new FunctionDef("year",       typeof(int),      1, typeof(DateTime)),
                 new FunctionDef("month",      typeof(int),      1, typeof(DateTime)),
                 new FunctionDef("day",        typeof(int),      1, typeof(DateTime)),
                 new FunctionDef("hour",       typeof(int),      1, typeof(DateTime)),
                 new FunctionDef("minute",     typeof(int),      1, typeof(DateTime)),
                 new FunctionDef("second",     typeof(int),      1, typeof(DateTime)),
+                new FunctionDef("age",        typeof(int),      1, typeof(DateTime)),
                 new FunctionDef("weekday",    typeof(DayOfWeek),1, typeof(DateTime)),
                 new FunctionDef("AddYears",   typeof(DateTime), 2, typeof(DateTime), typeof(int)),
                 new FunctionDef("AddMonths",  typeof(DateTime), 2, typeof(DateTime), typeof(int)),
@@ -71,12 +73,14 @@ namespace Org.MathEval.Functions
             {
                 case "today":      return DateTime.Today;
                 case "now":        return DateTime.Now;
+                case "date":       return DateTime.Parse(args[0].ToString());
                 case "year":       return ToDateTime(args[0]).Year;
                 case "month":      return ToDateTime(args[0]).Month;
                 case "day":        return ToDateTime(args[0]).Day;
                 case "hour":       return ToDateTime(args[0]).Hour;
                 case "minute":     return ToDateTime(args[0]).Minute;
                 case "second":     return ToDateTime(args[0]).Second;
+                case "age":        return DateTime.Now.Year - ToDateTime(args[0]).Year;
                 case "weekday":    return ToDateTime(args[0]).DayOfWeek;
                 case "addyears":   return ToDateTime(args[0]).AddYears(ToInt(args[1]));
                 case "addmonths":  return ToDateTime(args[0]).AddMonths(ToInt(args[1]));

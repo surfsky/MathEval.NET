@@ -35,9 +35,7 @@ namespace Org.MathEval.Operators.Unary
     /// </summary>
     public abstract class AbstractUnaryOperator : BaseOperator, IOperator
     {
-        /// <summary>
-        /// Initializes a new instance structure to a specified type string value and type int value
-        /// </summary>
+        /// <summary>Initializes a new instance structure to a specified type string value and type int value</summary>
         /// <param name="op">op</param>
         /// <param name="precedence">precedence</param>
         public AbstractUnaryOperator(string op, int precedence)
@@ -46,9 +44,7 @@ namespace Org.MathEval.Operators.Unary
             Prec = precedence;
         }
 
-        /// <summary>
-        /// Calculate result
-        /// </summary>
+        /// <summary>Calculate result</summary>
         /// <param name="left">left</param>
         /// <param name="right">right</param>
         /// <param name="dc">dc</param>
@@ -62,17 +58,13 @@ namespace Org.MathEval.Operators.Unary
             return null;
         }
 
-        /// <summary>
-        /// GetAss
-        /// </summary>
+        /// <summary>GetAss</summary>
         /// <returns>Enum</returns>
-        public new Assoc GetAss()
+        public new Assoc GetAssoc()
         {
             throw new NotImplementedException();
         }
-        /// <summary>
-        /// Validate
-        /// </summary>
+        /// <summary>Validate</summary>
         /// <param name="typeLeft">typeLeft</param>
         /// <param name="typeRight">typeRight</param>
         /// <returns>Type</returns>

@@ -78,7 +78,7 @@ namespace Org.MathEval.Operators.Binop
         /// GetAss
         /// </summary>
         /// <returns>Assoc</returns>
-        public override Assoc GetAss()
+        public override Assoc GetAssoc()
         {
             return Assoc;
         }
