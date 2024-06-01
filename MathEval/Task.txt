@@ -1,6 +1,15 @@
 ﻿------------------------------
-已完成
+Task
+------------------------------
+发布nuget package matheval.net
 参考：https://matheval.org/math-expression-eval-for-c-sharp/ 里面有完整的datetime函数实现，仅供参考。
+
+
+
+
+
+------------------------------
+已完成
 ------------------------------
 
 重构 Parser

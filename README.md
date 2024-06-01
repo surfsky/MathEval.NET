@@ -121,7 +121,7 @@ PM> Install-Package MathEval.NET -Version 4.5.0.0
 | DEGREES(radians)                 |  Convert radians to degrees
 
 
-## 3.7 Supported math statstic functions
+## 3.7 Supported math statistic functions
 
 | Function                          | Description                                              
 |-----------------------------------|----------------------------------------------------------
@@ -157,7 +157,7 @@ PM> Install-Package MathEval.NET -Version 4.5.0.0
 | CHAR(ascii-code)                                     | Return character from ascii code
 | CODE(char)                                           | Returns a ascii code of a character
 | VALUE(text)                                          | Convert numbers stored as text to numbers
-| LIKE(text, sqlpattern)                               | Returns TRUE when a given string match the sqlpatter(support _*%). eg: like("Abcd", "_bc%")
+| LIKE(text, sqlpattern)                               | Returns TRUE when a given string match the sqlpattern string(support _*%). eg: like("Abcd", "_bc%")
 
 
 Text() Example:  
