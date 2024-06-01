@@ -43,6 +43,7 @@ namespace Org.MathEval.Functions
                 new FunctionDef("today",      typeof(DateTime), 0, null),
                 new FunctionDef("now",        typeof(DateTime), 0, null),
                 new FunctionDef("date",       typeof(DateTime), 1, typeof(string)),
+
                 new FunctionDef("year",       typeof(int),      1, typeof(DateTime)),
                 new FunctionDef("month",      typeof(int),      1, typeof(DateTime)),
                 new FunctionDef("day",        typeof(int),      1, typeof(DateTime)),
@@ -58,6 +59,23 @@ namespace Org.MathEval.Functions
                 new FunctionDef("AddMinutes", typeof(DateTime), 2, typeof(DateTime), typeof(int)),
                 new FunctionDef("AddSeconds", typeof(DateTime), 2, typeof(DateTime), typeof(int)),
                 new FunctionDef("AddDate",    typeof(DateTime), 7, typeof(DateTime), typeof(int), typeof(int), typeof(int), typeof(int), typeof(int), typeof(int)),
+
+                // support string datetime
+                new FunctionDef("year",       typeof(int),      1, typeof(string)),
+                new FunctionDef("month",      typeof(int),      1, typeof(string)),
+                new FunctionDef("day",        typeof(int),      1, typeof(string)),
+                new FunctionDef("hour",       typeof(int),      1, typeof(string)),
+                new FunctionDef("minute",     typeof(int),      1, typeof(string)),
+                new FunctionDef("second",     typeof(int),      1, typeof(string)),
+                new FunctionDef("age",        typeof(int),      1, typeof(string)),
+                new FunctionDef("weekday",    typeof(DayOfWeek),1, typeof(string)),
+                new FunctionDef("AddYears",   typeof(DateTime), 2, typeof(string), typeof(int)),
+                new FunctionDef("AddMonths",  typeof(DateTime), 2, typeof(string), typeof(int)),
+                new FunctionDef("AddDays",    typeof(DateTime), 2, typeof(string), typeof(int)),
+                new FunctionDef("AddHours",   typeof(DateTime), 2, typeof(string), typeof(int)),
+                new FunctionDef("AddMinutes", typeof(DateTime), 2, typeof(string), typeof(int)),
+                new FunctionDef("AddSeconds", typeof(DateTime), 2, typeof(string), typeof(int)),
+                new FunctionDef("AddDate",    typeof(DateTime), 7, typeof(string), typeof(int), typeof(int), typeof(int), typeof(int), typeof(int), typeof(int)),
             };
         }
 
@@ -73,7 +91,7 @@ namespace Org.MathEval.Functions
             {
                 case "today":      return DateTime.Today;
                 case "now":        return DateTime.Now;
-                case "date":       return DateTime.Parse(args[0].ToString());
+                case "date":       return ToDateTime(args[0]);
                 case "year":       return ToDateTime(args[0]).Year;
                 case "month":      return ToDateTime(args[0]).Month;
                 case "day":        return ToDateTime(args[0]).Day;

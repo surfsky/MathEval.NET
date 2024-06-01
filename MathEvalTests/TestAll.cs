@@ -325,10 +325,10 @@ namespace UnitTest
         public void Bool_Like_Test()
         {
             var expr = new Expression();
-            Assert.AreEqual(true, expr.SetFormular("LIKE('Abc', '_bc')").Eval<bool>());
-            Assert.AreEqual(true, expr.SetFormular("LIKE('Abc', '*b*')").Eval<bool>());
-            Assert.AreEqual(true, expr.SetFormular("LIKE('Abc', '%b%')").Eval<bool>());
-            Assert.AreEqual(true, expr.SetFormular("LIKE('Abc', '')").Eval<bool>());
+            Assert.AreEqual(true, expr.SetFormular("LIKE('Abcd', '_bc_')").Eval<bool>());
+            Assert.AreEqual(true, expr.SetFormular("LIKE('Abcd', '*b*')").Eval<bool>());
+            Assert.AreEqual(true, expr.SetFormular("LIKE('Abcd', '%b%')").Eval<bool>());
+            Assert.AreEqual(true, expr.SetFormular("LIKE('Abcd', '')").Eval<bool>());
         }
 
         [TestMethod]
@@ -738,26 +738,43 @@ namespace UnitTest
         [TestMethod]
         public void DateTime_Test()
         {
-            Assert.AreEqual(DateTime.Today,               new Expression("Today()").Eval<DateTime>());
-            Assert.AreEqual(DateTime.Now.Day,             new Expression("Now()").Eval<DateTime>().Day);
-            Assert.AreEqual(DateTime.Today.Year,          new Expression("Year(Today())").Eval<int>());
-            Assert.AreEqual(DateTime.Today.Month,         new Expression("Month(Today())").Eval<int>());
-            Assert.AreEqual(DateTime.Today.Day,           new Expression("Day(Today())").Eval<int>());
-            Assert.AreEqual(DateTime.Today.Hour,          new Expression("Hour(Today())").Eval<int>());
-            Assert.AreEqual(DateTime.Today.Minute,        new Expression("Minute(Today())").Eval<int>());
-            Assert.AreEqual(DateTime.Today.Second,        new Expression("Second(Today())").Eval<int>());
-            Assert.AreEqual(0,                            new Expression("Age(Today())").Eval<int>());
-            Assert.AreEqual(DateTime.Parse("2020-01-01"), new Expression("Date('2020-01-01')").Eval<DateTime>());
+            var expr = new Expression();
+            Assert.AreEqual(DateTime.Parse("2020-01-01"), expr.SetFormular("Date('2020-01-01')").Eval<DateTime>());
+            Assert.AreEqual(DateTime.Today,               expr.SetFormular("Today()").Eval<DateTime>());
+            Assert.AreEqual(DateTime.Now.Day,             expr.SetFormular("Now()").Eval<DateTime>().Day);
 
-            Assert.AreEqual(DateTime.Today.DayOfWeek,     new Expression("Weekday(Today())").Eval<DayOfWeek>());
-            Assert.AreEqual(DateTime.Today.AddYears(1),   new Expression("AddYears(Today(), 1)").Eval<DateTime>());
-            Assert.AreEqual(DateTime.Today.AddMonths(1),  new Expression("AddMonths(Today(), 1)").Eval<DateTime>());
-            Assert.AreEqual(DateTime.Today.AddDays(1),    new Expression("AddDays(Today(), 1)").Eval<DateTime>());
-            Assert.AreEqual(DateTime.Today.AddHours(1),   new Expression("AddHours(Today(), 1)").Eval<DateTime>());
-            Assert.AreEqual(DateTime.Today.AddMinutes(1), new Expression("AddMinutes(Today(), 1)").Eval<DateTime>());
-            Assert.AreEqual(DateTime.Today.AddSeconds(1), new Expression("AddSeconds(Today(), 1)").Eval<DateTime>());
-            Assert.AreEqual(DateTime.Today.AddYears(1),   new Expression("AddDate(Today(), 1,0,0,0,0,0)").Eval<DateTime>());
-        }
+            Assert.AreEqual(DateTime.Today.Year,          expr.SetFormular("Year(Today())").Eval<int>());
+            Assert.AreEqual(DateTime.Today.Month,         expr.SetFormular("Month(Today())").Eval<int>());
+            Assert.AreEqual(DateTime.Today.Day,           expr.SetFormular("Day(Today())").Eval<int>());
+            Assert.AreEqual(DateTime.Today.Hour,          expr.SetFormular("Hour(Today())").Eval<int>());
+            Assert.AreEqual(DateTime.Today.Minute,        expr.SetFormular("Minute(Today())").Eval<int>());
+            Assert.AreEqual(DateTime.Today.Second,        expr.SetFormular("Second(Today())").Eval<int>());
+            Assert.AreEqual(0,                            expr.SetFormular("Age(Today())").Eval<int>());
+            Assert.AreEqual(DateTime.Today.DayOfWeek,     expr.SetFormular("Weekday(Today())").Eval<DayOfWeek>());
+            Assert.AreEqual(DateTime.Today.AddYears(1),   expr.SetFormular("AddYears(Today(), 1)").Eval<DateTime>());
+            Assert.AreEqual(DateTime.Today.AddMonths(1),  expr.SetFormular("AddMonths(Today(), 1)").Eval<DateTime>());
+            Assert.AreEqual(DateTime.Today.AddDays(1),    expr.SetFormular("AddDays(Today(), 1)").Eval<DateTime>());
+            Assert.AreEqual(DateTime.Today.AddHours(1),   expr.SetFormular("AddHours(Today(), 1)").Eval<DateTime>());
+            Assert.AreEqual(DateTime.Today.AddMinutes(1), expr.SetFormular("AddMinutes(Today(), 1)").Eval<DateTime>());
+            Assert.AreEqual(DateTime.Today.AddSeconds(1), expr.SetFormular("AddSeconds(Today(), 1)").Eval<DateTime>());
+            Assert.AreEqual(DateTime.Today.AddYears(1),   expr.SetFormular("AddDate(Today(), 1,0,0,0,0,0)").Eval<DateTime>());
+
+            Assert.AreEqual(2020,                                   expr.SetFormular("Year('2020-01-01 12:00')").Eval<int>());
+            Assert.AreEqual(1,                                      expr.SetFormular("Month('2020-01-01 12:00')").Eval<int>());
+            Assert.AreEqual(1,                                      expr.SetFormular("Day('2020-01-01 12:00')").Eval<int>());
+            Assert.AreEqual(12,                                     expr.SetFormular("Hour('2020-01-01 12:00')").Eval<int>());
+            Assert.AreEqual(0,                                      expr.SetFormular("Minute('2020-01-01 12:00')").Eval<int>());
+            Assert.AreEqual(0,                                      expr.SetFormular("Second('2020-01-01 12:00')").Eval<int>());
+            Assert.AreEqual(DateTime.Now.Year-2020,                 expr.SetFormular("Age('2020-01-01 12:00')").Eval<int>());
+            Assert.AreEqual(DayOfWeek.Wednesday,                    expr.SetFormular("Weekday('2020-01-01 12:00')").Eval<DayOfWeek>());
+            Assert.AreEqual(DateTime.Parse("2021-01-01 12:00:00"),  expr.SetFormular("AddYears('2020-01-01 12:00', 1)").Eval<DateTime>());
+            Assert.AreEqual(DateTime.Parse("2020-02-01 12:00:00"),  expr.SetFormular("AddMonths('2020-01-01 12:00', 1)").Eval<DateTime>());
+            Assert.AreEqual(DateTime.Parse("2020-01-02 12:00:00"),  expr.SetFormular("AddDays('2020-01-01 12:00', 1)").Eval<DateTime>());
+            Assert.AreEqual(DateTime.Parse("2020-01-01 13:00:00"),  expr.SetFormular("AddHours('2020-01-01 12:00', 1)").Eval<DateTime>());
+            Assert.AreEqual(DateTime.Parse("2020-01-01 12:01:00"),  expr.SetFormular("AddMinutes('2020-01-01 12:00', 1)").Eval<DateTime>());
+            Assert.AreEqual(DateTime.Parse("2020-01-01 12:00:01"),  expr.SetFormular("AddSeconds('2020-01-01 12:00', 1)").Eval<DateTime>());
+            Assert.AreEqual(DateTime.Parse("2021-01-01 12:00:00"),  expr.SetFormular("AddDate('2020-01-01 12:00', 1,0,0,0,0,0)").Eval<DateTime>());
+        } 
 
 
         [TestMethod]
