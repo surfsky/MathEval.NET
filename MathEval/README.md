@@ -11,7 +11,8 @@ And make many changes:
 2. Support more DateTime functions, eg: date, now, year, weekday, adddays...
 3. Support more operator, eg: ! !=
 4. Support more text function,  eg: like 
-3. Support regist custom function.
+5. Support more statistic functions, eg: count, variance
+6. Support regist custom function.
 
 [TOC]
 
@@ -123,13 +124,15 @@ PM> Install-Package MathEval.NET -Version 4.5.0.0
 
 ## 3.7 Supported math statistic functions
 
-| Function                         | Description                                              
-|----------------------------------|----------------------------------------------------------
-| COUNT(number1, [number2],…)      |  Return count of numbers supplied
+| Function                          | Description                                              
+|-----------------------------------|----------------------------------------------------------
 | SUM(number1, [number2],…)        |  Return sum of numbers supplied
 | AVERAGE(number1, [number2],…)    |  Return average of numbers supplied
 | MIN(number1, [number2],…)        |  Return the smallest value from the numbers supplied
 | MAX(number1, [number2],…)        |  Return the biggest value from the numbers supplied
+|-----------------------------------|----------------------------------------------------------
+| COUNT(number1, [number2],…)      |  Return count of numbers supplied
+| VARIANCE(number1, [number2],…)   |  Return the variance value from the numbers supplied
 
 
 ## 3.8 Supported text functions
@@ -158,6 +161,7 @@ PM> Install-Package MathEval.NET -Version 4.5.0.0
 | CHAR(ascii-code)                                     | Return character from ascii code
 | CODE(char)                                           | Returns a ascii code of a character
 | VALUE(text)                                          | Convert numbers stored as text to numbers
+|------------------------------------------------------|----------------------------------------------------------
 | LIKE(text, sqlpattern)                               | Returns TRUE when a given string match the sqlpattern string(support _*%). eg: like("Abcd", "_bc%")
 
 

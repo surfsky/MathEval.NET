@@ -33,8 +33,6 @@
 \\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEvalTests\bin\Debug\net45\Microsoft.VisualStudio.CodeCoverage.Shim.dll
 \\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEvalTests\bin\Debug\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
 \\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEvalTests\bin\Debug\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
-\\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEvalTests\bin\Debug\net45\org.matheval.dll
-\\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEvalTests\bin\Debug\net45\org.matheval.pdb
 \\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEvalTests\obj\Debug\net45\MathEvalTests.csproj.AssemblyReference.cache
 \\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEvalTests\obj\Debug\net45\MathEvalTests.GeneratedMSBuildEditorConfig.editorconfig
 \\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEvalTests\obj\Debug\net45\MathEvalTests.AssemblyInfoInputs.cache
@@ -42,3 +40,5 @@
 \\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEvalTests\obj\Debug\net45\MathEvalTests.csproj.CoreCompileInputs.cache
 \\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEvalTests\obj\Debug\net45\MathEvalTests.sourcelink.json
 \\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEvalTests\obj\Debug\net45\MathEvalTests.csproj.CopyComplete
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEvalTests\bin\Debug\net45\MathEval.dll
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEvalTests\bin\Debug\net45\MathEval.pdb

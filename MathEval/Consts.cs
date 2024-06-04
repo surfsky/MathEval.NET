@@ -175,10 +175,12 @@ namespace Org.MathEval
         //-------------------------------------------------
         // Stat functions
         //-------------------------------------------------
+        public const string Count = "count";
         public const string Sum = "sum";
         public const string Min = "min";
         public const string Max = "max";
         public const string Average = "average";
+        public const string Variance = "variance";
 
 
         //-------------------------------------------------

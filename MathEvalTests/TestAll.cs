@@ -210,34 +210,34 @@ namespace UnitTest
             var expr = new Expression("a <> null");
             Assert.AreEqual(true, expr.Bind("a", 1).Eval<bool>());
 
-            expr.SetFormular("a <> null");
+            expr.SetFormula("a <> null");
             Assert.AreEqual(false, expr.Bind("a", null).Eval<bool>());
 
-            expr.SetFormular("a <> 1.23");
+            expr.SetFormula("a <> 1.23");
             Assert.AreEqual(false, expr.Bind("a", 1.23).Eval<bool>());
 
-            expr.SetFormular("a <> 1.23");
+            expr.SetFormula("a <> 1.23");
             Assert.AreEqual(true, expr.Bind("a", 1.22).Eval<bool>());
 
-            expr.SetFormular("a <> 1.23");
+            expr.SetFormula("a <> 1.23");
             Assert.AreEqual(true, expr.Bind("a", null).Eval<bool>());
 
-            expr.SetFormular("a <> (373434*13214235.64)");
+            expr.SetFormula("a <> (373434*13214235.64)");
             Assert.AreEqual(false, expr.Bind("a", 373434 * 13214235.64).Eval<bool>());
 
-            expr.SetFormular("a <> 1.22");
+            expr.SetFormula("a <> 1.22");
             Assert.AreEqual(true, expr.Bind("a", 1.23).Eval<bool>());
 
-            expr.SetFormular("a <> b");
+            expr.SetFormula("a <> b");
             Assert.AreEqual(false, expr.Bind("a", decimal.MaxValue).Bind("b", decimal.MaxValue).Eval<bool>());
 
-            expr.SetFormular("a <> b");
+            expr.SetFormula("a <> b");
             Assert.AreEqual(true, expr.Bind("a", decimal.MaxValue).Bind("b", decimal.MaxValue - 1).Eval<bool>());
 
-            expr.SetFormular("a != b");
+            expr.SetFormula("a != b");
             Assert.AreEqual(true, expr.Bind("a", 3).Bind("b", 4).Eval<bool>());
 
-            expr.SetFormular("!true");
+            expr.SetFormula("!true");
             Assert.AreEqual(false, expr.Eval<bool>());
         }
 
@@ -290,16 +290,16 @@ namespace UnitTest
             Expression expr1 = new Expression("6.78-2*3^-1.5+e/pi%3");
             Assert.AreEqual(7.260356m, expr1.Eval<decimal>());
 
-            expr1.SetFormular("6.78-2*3^-1.5+e/pi%3%(tan(pi/1.3)-0.12^-1.3/5)");
+            expr1.SetFormula("6.78-2*3^-1.5+e/pi%3%(tan(pi/1.3)-0.12^-1.3/5)");
             expr1.SetScale(3);
             Assert.AreEqual(3.226m, expr1.Eval<decimal>());
 
-            expr1.SetFormular("5/3*5^pi-1.32*-e%(-3.6*1.78)");
+            expr1.SetFormula("5/3*5^pi-1.32*-e%(-3.6*1.78)");
             expr1.SetScale(7);
             Assert.AreEqual(265.2423742m, expr1.Eval<decimal>());
 
             expr1.SetScale(6);
-            expr1.SetFormular("PI()-+(--+---PI()/3*3)");
+            expr1.SetFormula("PI()-+(--+---PI()/3*3)");
             Assert.AreEqual(6.283185m, expr1.Eval<decimal>());
 
         }
@@ -325,10 +325,10 @@ namespace UnitTest
         public void Bool_Like_Test()
         {
             var expr = new Expression();
-            Assert.AreEqual(true, expr.SetFormular("LIKE('Abcd', '_bc_')").Eval<bool>());
-            Assert.AreEqual(true, expr.SetFormular("LIKE('Abcd', '*b*')").Eval<bool>());
-            Assert.AreEqual(true, expr.SetFormular("LIKE('Abcd', '%b%')").Eval<bool>());
-            Assert.AreEqual(true, expr.SetFormular("LIKE('Abcd', '')").Eval<bool>());
+            Assert.AreEqual(true, expr.SetFormula("LIKE('Abcd', '_bc_')").Eval<bool>());
+            Assert.AreEqual(true, expr.SetFormula("LIKE('Abcd', '*b*')").Eval<bool>());
+            Assert.AreEqual(true, expr.SetFormula("LIKE('Abcd', '%b%')").Eval<bool>());
+            Assert.AreEqual(true, expr.SetFormula("LIKE('Abcd', '')").Eval<bool>());
         }
 
         [TestMethod]
@@ -352,7 +352,7 @@ namespace UnitTest
             Expression expr6 = new Expression("(a || false) && (2 > b)");
             Assert.AreEqual(false, expr5.Bind("a", false).Bind("b", 1).Eval<bool>());
 
-            expr6.SetFormular("not(x<7 || sqrt(max(x,9,3,min(4,3))) <= 3)");
+            expr6.SetFormula("not(x<7 || sqrt(max(x,9,3,min(4,3))) <= 3)");
             Assert.AreEqual(true, expr6.Bind("x", 22.9m).Eval<bool>());
         }
 
@@ -456,40 +456,22 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void Math_SumMinMaxavg_Test()
+        public void Stat_SumMinMaxAvgCount_Test()
         {
-            Expression expr1 = new Expression("SUM(1,2,3.1)");
-            Assert.AreEqual(6.1m, expr1.Eval<decimal>());
-
-            Expression expr2 = new Expression("SUM(abc)");
-            expr2.Bind("abc", new List<decimal>() { 1, 2, 3 });
-            Assert.AreEqual(6m, expr2.Eval<decimal>());
-
-            Expression expr3 = new Expression("MIN(1,2,--1.2,-+3.4,3.1)");
-            Assert.AreEqual(-3.4m, expr3.Eval<decimal>());
-
-            Expression expr4 = new Expression("MIN(abc)");
-            expr4.Bind("abc", new List<byte>() { 1, 2, 3 });
-            Assert.AreEqual(1m, expr4.Eval<decimal>());
-
-
-            Expression expr5 = new Expression("MAX(1,2,--1.2,-+3.4,3.1)");
-            Assert.AreEqual(3.1d, expr5.Eval<double>());
-
-            Expression expr6 = new Expression("MAX(abc)");
-            expr6.Bind("abc", new List<int>() { 1, 2, 3 });
-            Assert.AreEqual(3m, expr6.Eval<decimal>());
-
-
-            Expression expr7 = new Expression("AVERAGE(1,2^(2-1.34%0.32)%0.5,--1.2,-+3.4,3.1)");
-            Assert.AreEqual(0.447411m, expr7.Eval<decimal>());
-
-            Expression expr8 = new Expression("AVERAGE(abc)");
-            expr8.Bind("abc", new List<int>() { 1, 2, 3 });
-            Assert.AreEqual(2m, expr8.Eval<decimal>());
-
-            Expression expr9 = new Expression("AVERAGE(1,MOD(2^(2-MOD(1.34,0.32)),0.5),--1.2,-3.4,3.1)");
-            Assert.AreEqual(0.447411m, expr9.Eval<decimal>());
+            var exp = new Expression();
+            Assert.AreEqual(3,         exp.SetFormula("count(1,2,3.1)").Eval<int>());
+            Assert.AreEqual(3,         exp.SetFormula("count(abc)").Bind("abc", new List<decimal>() { 1, 2, 3 }).Eval<int>());
+            Assert.AreEqual(6.1m,      exp.SetFormula("SUM(1,2,3.1)").Eval<decimal>());
+            Assert.AreEqual(6m,        exp.SetFormula("SUM(abc)").Bind("abc", new List<decimal>() { 1, 2, 3 }).Eval<decimal>());
+            Assert.AreEqual(-3.4m,     exp.SetFormula("MIN(1,2,--1.2,-+3.4,3.1)").Eval<decimal>());
+            Assert.AreEqual(1m,        exp.SetFormula("MIN(abc)").Bind("abc", new List<byte>() { 1, 2, 3 }).Eval<decimal>());
+            Assert.AreEqual(3.1d,      exp.SetFormula("MAX(1,2,--1.2,-+3.4,3.1)").Eval<double>());
+            Assert.AreEqual(3m,        exp.SetFormula("MAX(abc)").Bind("abc", new List<int>() { 1, 2, 3 }).Eval<decimal>());
+            Assert.AreEqual(0.447411m, exp.SetFormula("AVERAGE(1,2^(2-1.34%0.32)%0.5,--1.2,-+3.4,3.1)").Eval<decimal>());
+            Assert.AreEqual(2m,        exp.SetFormula("AVERAGE(abc)").Bind("abc", new List<int>() { 1, 2, 3 }).Eval<decimal>());
+            Assert.AreEqual(0.447411m, exp.SetFormula("AVERAGE(1,MOD(2^(2-MOD(1.34,0.32)),0.5),--1.2,-3.4,3.1)").Eval<decimal>());
+            Assert.AreEqual("0.66667", exp.SetFormula("variance(1,2,3)").Eval<double>().ToString("F5"));  // 2.0d/3
+            Assert.AreEqual("0.66667", exp.SetFormula("variance(abc)").Bind("abc", new List<int>() { 1, 2, 3 }).Eval<double>().ToString("F5"));
         }
 
         [TestMethod]
@@ -621,31 +603,31 @@ namespace UnitTest
             Expression expr1 = new Expression("CEILING(2.1)");
             Assert.AreEqual(3M, expr1.Eval<decimal>());
 
-            expr1.SetFormular("CEILING(4.5, 1)");
+            expr1.SetFormula("CEILING(4.5, 1)");
             Assert.AreEqual(5M, expr1.Eval<decimal>());
 
-            expr1.SetFormular("CEILING(-2.5, -2)");
+            expr1.SetFormula("CEILING(-2.5, -2)");
             Assert.AreEqual(-4M, expr1.Eval<decimal>());
 
-            expr1.SetFormular("CEILING(4.5, 1)");
+            expr1.SetFormula("CEILING(4.5, 1)");
             Assert.AreEqual(5M, expr1.Eval<decimal>());
 
-            expr1.SetFormular("FLOOR(3.7)");
+            expr1.SetFormula("FLOOR(3.7)");
             Assert.AreEqual(3M, expr1.Eval<decimal>());
 
-            expr1.SetFormular("FLOOR(3.7,2)");
+            expr1.SetFormula("FLOOR(3.7,2)");
             Assert.AreEqual(2M, expr1.Eval<decimal>());
 
-            expr1.SetFormular("FLOOR(-2.5,-2)");
+            expr1.SetFormula("FLOOR(-2.5,-2)");
             Assert.AreEqual(-2M, expr1.Eval<decimal>());
 
-            expr1.SetFormular("ROUND(20.085537,2)");
+            expr1.SetFormula("ROUND(20.085537,2)");
             Assert.AreEqual(20.09M, expr1.Eval<decimal>());
 
             /* expr1.SetFomular("ROUND(20126.08,-1)");
              Assert.AreEqual(20130M, expr1.Eval<decimal>());*/
 
-            expr1.SetFormular("POWER(-2, 3)");
+            expr1.SetFormula("POWER(-2, 3)");
             Assert.AreEqual(-8M, expr1.Eval<decimal>());
         }
 
@@ -657,41 +639,41 @@ namespace UnitTest
             Expression expr1 = new Expression("MOD(EXP(5.4),1.3)*5/_a_*3^PI()");
             Assert.AreEqual(21.366845M, expr1.Bind("_a_", 3).Eval<decimal>());
 
-            expr1.SetFormular("3^PI()^0.1");
+            expr1.SetFormula("3^PI()^0.1");
             Assert.AreEqual(3.42758M, expr1.Eval<decimal>());
 
-            expr1.SetFormular("sin(x)^2+cos(x)^2");
+            expr1.SetFormula("sin(x)^2+cos(x)^2");
             Assert.AreEqual(1M, expr1.Bind("x", 0.1).Eval<decimal>());
 
-            expr1.SetFormular("1+cot(x)^2=1/sin(x)^2");
+            expr1.SetFormula("1+cot(x)^2=1/sin(x)^2");
             Assert.AreEqual(true, expr1.Bind("x", randomAngle).Eval<bool>());
 
-            expr1.SetFormular("1+cot(x)^2=1/sin(x)^2");
+            expr1.SetFormula("1+cot(x)^2=1/sin(x)^2");
             Assert.AreEqual(true, expr1.Bind("x", randomAngle).Eval<bool>());
 
-            expr1.SetFormular("sin(y)^6+cos(y)^6 = (sin(y)^2+cos(y)^2)*(sin(y)^4-sin(y)^2*cos(y)^2+cos(y)^4)");
+            expr1.SetFormula("sin(y)^6+cos(y)^6 = (sin(y)^2+cos(y)^2)*(sin(y)^4-sin(y)^2*cos(y)^2+cos(y)^4)");
             Assert.AreEqual(true, expr1.Bind("y", randomAngle).Eval<bool>());
 
-            expr1.SetFormular("tan(a)^3-((3*sin(a)-sin(3*a))/(3*cos(a)+cos(3*a)))");
+            expr1.SetFormula("tan(a)^3-((3*sin(a)-sin(3*a))/(3*cos(a)+cos(3*a)))");
             Assert.AreEqual(0, expr1.Bind("a", Math.PI / 6).Eval<decimal>());
 
-            expr1.SetFormular("tan(a)^3-((3*sin(a)-sin(3*a))/(3*cos(a)+cos(3*a)))");
+            expr1.SetFormula("tan(a)^3-((3*sin(a)-sin(3*a))/(3*cos(a)+cos(3*a)))");
             Assert.AreEqual(0, expr1.Bind("a", randomAngle).Eval<decimal>());
 
-            expr1.SetFormular("if(tan(a)^3-((3*sin(a)-sin(3*a))/(3*cos(a)+cos(3*a)))==0,if(sin(a) - cos(a) = SQRT(2) * sin(a - pi / 4),true,false),false)");
+            expr1.SetFormula("if(tan(a)^3-((3*sin(a)-sin(3*a))/(3*cos(a)+cos(3*a)))==0,if(sin(a) - cos(a) = SQRT(2) * sin(a - pi / 4),true,false),false)");
             Assert.AreEqual(true, expr1.Bind("a", randomAngle).Eval<bool>());
 
-            expr1.SetFormular("sin(a) - cos(a) = SQRT(2) * sin(a - pi / 4)");
+            expr1.SetFormula("sin(a) - cos(a) = SQRT(2) * sin(a - pi / 4)");
             Assert.AreEqual(true, expr1.Bind("a", randomAngle).Eval<bool>());
 
-            expr1.SetFormular("(a>b)||(PI()<(d-e+power(f,2)))&&(4+6>8)");
+            expr1.SetFormula("(a>b)||(PI()<(d-e+power(f,2)))&&(4+6>8)");
             expr1.Bind("a", 3).Bind("b", 2).Bind("d", 21.45m).Bind("e", 0.2).Bind("f", 0.1);
             Assert.AreEqual(true, expr1.Eval<bool>());
 
-            expr1.SetFormular("(3.4 + -4.1) / 2");
+            expr1.SetFormula("(3.4 + -4.1) / 2");
             Assert.AreEqual(-0.35m, expr1.Eval<decimal>());
 
-            expr1.SetFormular("SQRT(a^2 + b^2)");
+            expr1.SetFormula("SQRT(a^2 + b^2)");
             expr1.Bind("a", 2.4).Bind("b", 9.253);
             Assert.AreEqual(9.559185m, expr1.Eval<decimal>());
 
@@ -739,41 +721,41 @@ namespace UnitTest
         public void DateTime_Test()
         {
             var expr = new Expression();
-            Assert.AreEqual(DateTime.Parse("2020-01-01"), expr.SetFormular("Date('2020-01-01')").Eval<DateTime>());
-            Assert.AreEqual(DateTime.Today,               expr.SetFormular("Today()").Eval<DateTime>());
-            Assert.AreEqual(DateTime.Now.Day,             expr.SetFormular("Now()").Eval<DateTime>().Day);
+            Assert.AreEqual(DateTime.Parse("2020-01-01"), expr.SetFormula("Date('2020-01-01')").Eval<DateTime>());
+            Assert.AreEqual(DateTime.Today,               expr.SetFormula("Today()").Eval<DateTime>());
+            Assert.AreEqual(DateTime.Now.Day,             expr.SetFormula("Now()").Eval<DateTime>().Day);
 
-            Assert.AreEqual(DateTime.Today.Year,          expr.SetFormular("Year(Today())").Eval<int>());
-            Assert.AreEqual(DateTime.Today.Month,         expr.SetFormular("Month(Today())").Eval<int>());
-            Assert.AreEqual(DateTime.Today.Day,           expr.SetFormular("Day(Today())").Eval<int>());
-            Assert.AreEqual(DateTime.Today.Hour,          expr.SetFormular("Hour(Today())").Eval<int>());
-            Assert.AreEqual(DateTime.Today.Minute,        expr.SetFormular("Minute(Today())").Eval<int>());
-            Assert.AreEqual(DateTime.Today.Second,        expr.SetFormular("Second(Today())").Eval<int>());
-            Assert.AreEqual(0,                            expr.SetFormular("Age(Today())").Eval<int>());
-            Assert.AreEqual(DateTime.Today.DayOfWeek,     expr.SetFormular("Weekday(Today())").Eval<DayOfWeek>());
-            Assert.AreEqual(DateTime.Today.AddYears(1),   expr.SetFormular("AddYears(Today(), 1)").Eval<DateTime>());
-            Assert.AreEqual(DateTime.Today.AddMonths(1),  expr.SetFormular("AddMonths(Today(), 1)").Eval<DateTime>());
-            Assert.AreEqual(DateTime.Today.AddDays(1),    expr.SetFormular("AddDays(Today(), 1)").Eval<DateTime>());
-            Assert.AreEqual(DateTime.Today.AddHours(1),   expr.SetFormular("AddHours(Today(), 1)").Eval<DateTime>());
-            Assert.AreEqual(DateTime.Today.AddMinutes(1), expr.SetFormular("AddMinutes(Today(), 1)").Eval<DateTime>());
-            Assert.AreEqual(DateTime.Today.AddSeconds(1), expr.SetFormular("AddSeconds(Today(), 1)").Eval<DateTime>());
-            Assert.AreEqual(DateTime.Today.AddYears(1),   expr.SetFormular("AddDate(Today(), 1,0,0,0,0,0)").Eval<DateTime>());
+            Assert.AreEqual(DateTime.Today.Year,          expr.SetFormula("Year(Today())").Eval<int>());
+            Assert.AreEqual(DateTime.Today.Month,         expr.SetFormula("Month(Today())").Eval<int>());
+            Assert.AreEqual(DateTime.Today.Day,           expr.SetFormula("Day(Today())").Eval<int>());
+            Assert.AreEqual(DateTime.Today.Hour,          expr.SetFormula("Hour(Today())").Eval<int>());
+            Assert.AreEqual(DateTime.Today.Minute,        expr.SetFormula("Minute(Today())").Eval<int>());
+            Assert.AreEqual(DateTime.Today.Second,        expr.SetFormula("Second(Today())").Eval<int>());
+            Assert.AreEqual(0,                            expr.SetFormula("Age(Today())").Eval<int>());
+            Assert.AreEqual(DateTime.Today.DayOfWeek,     expr.SetFormula("Weekday(Today())").Eval<DayOfWeek>());
+            Assert.AreEqual(DateTime.Today.AddYears(1),   expr.SetFormula("AddYears(Today(), 1)").Eval<DateTime>());
+            Assert.AreEqual(DateTime.Today.AddMonths(1),  expr.SetFormula("AddMonths(Today(), 1)").Eval<DateTime>());
+            Assert.AreEqual(DateTime.Today.AddDays(1),    expr.SetFormula("AddDays(Today(), 1)").Eval<DateTime>());
+            Assert.AreEqual(DateTime.Today.AddHours(1),   expr.SetFormula("AddHours(Today(), 1)").Eval<DateTime>());
+            Assert.AreEqual(DateTime.Today.AddMinutes(1), expr.SetFormula("AddMinutes(Today(), 1)").Eval<DateTime>());
+            Assert.AreEqual(DateTime.Today.AddSeconds(1), expr.SetFormula("AddSeconds(Today(), 1)").Eval<DateTime>());
+            Assert.AreEqual(DateTime.Today.AddYears(1),   expr.SetFormula("AddDate(Today(), 1,0,0,0,0,0)").Eval<DateTime>());
 
-            Assert.AreEqual(2020,                                   expr.SetFormular("Year('2020-01-01 12:00')").Eval<int>());
-            Assert.AreEqual(1,                                      expr.SetFormular("Month('2020-01-01 12:00')").Eval<int>());
-            Assert.AreEqual(1,                                      expr.SetFormular("Day('2020-01-01 12:00')").Eval<int>());
-            Assert.AreEqual(12,                                     expr.SetFormular("Hour('2020-01-01 12:00')").Eval<int>());
-            Assert.AreEqual(0,                                      expr.SetFormular("Minute('2020-01-01 12:00')").Eval<int>());
-            Assert.AreEqual(0,                                      expr.SetFormular("Second('2020-01-01 12:00')").Eval<int>());
-            Assert.AreEqual(DateTime.Now.Year-2020,                 expr.SetFormular("Age('2020-01-01 12:00')").Eval<int>());
-            Assert.AreEqual(DayOfWeek.Wednesday,                    expr.SetFormular("Weekday('2020-01-01 12:00')").Eval<DayOfWeek>());
-            Assert.AreEqual(DateTime.Parse("2021-01-01 12:00:00"),  expr.SetFormular("AddYears('2020-01-01 12:00', 1)").Eval<DateTime>());
-            Assert.AreEqual(DateTime.Parse("2020-02-01 12:00:00"),  expr.SetFormular("AddMonths('2020-01-01 12:00', 1)").Eval<DateTime>());
-            Assert.AreEqual(DateTime.Parse("2020-01-02 12:00:00"),  expr.SetFormular("AddDays('2020-01-01 12:00', 1)").Eval<DateTime>());
-            Assert.AreEqual(DateTime.Parse("2020-01-01 13:00:00"),  expr.SetFormular("AddHours('2020-01-01 12:00', 1)").Eval<DateTime>());
-            Assert.AreEqual(DateTime.Parse("2020-01-01 12:01:00"),  expr.SetFormular("AddMinutes('2020-01-01 12:00', 1)").Eval<DateTime>());
-            Assert.AreEqual(DateTime.Parse("2020-01-01 12:00:01"),  expr.SetFormular("AddSeconds('2020-01-01 12:00', 1)").Eval<DateTime>());
-            Assert.AreEqual(DateTime.Parse("2021-01-01 12:00:00"),  expr.SetFormular("AddDate('2020-01-01 12:00', 1,0,0,0,0,0)").Eval<DateTime>());
+            Assert.AreEqual(2020,                                   expr.SetFormula("Year('2020-01-01 12:00')").Eval<int>());
+            Assert.AreEqual(1,                                      expr.SetFormula("Month('2020-01-01 12:00')").Eval<int>());
+            Assert.AreEqual(1,                                      expr.SetFormula("Day('2020-01-01 12:00')").Eval<int>());
+            Assert.AreEqual(12,                                     expr.SetFormula("Hour('2020-01-01 12:00')").Eval<int>());
+            Assert.AreEqual(0,                                      expr.SetFormula("Minute('2020-01-01 12:00')").Eval<int>());
+            Assert.AreEqual(0,                                      expr.SetFormula("Second('2020-01-01 12:00')").Eval<int>());
+            Assert.AreEqual(DateTime.Now.Year-2020,                 expr.SetFormula("Age('2020-01-01 12:00')").Eval<int>());
+            Assert.AreEqual(DayOfWeek.Wednesday,                    expr.SetFormula("Weekday('2020-01-01 12:00')").Eval<DayOfWeek>());
+            Assert.AreEqual(DateTime.Parse("2021-01-01 12:00:00"),  expr.SetFormula("AddYears('2020-01-01 12:00', 1)").Eval<DateTime>());
+            Assert.AreEqual(DateTime.Parse("2020-02-01 12:00:00"),  expr.SetFormula("AddMonths('2020-01-01 12:00', 1)").Eval<DateTime>());
+            Assert.AreEqual(DateTime.Parse("2020-01-02 12:00:00"),  expr.SetFormula("AddDays('2020-01-01 12:00', 1)").Eval<DateTime>());
+            Assert.AreEqual(DateTime.Parse("2020-01-01 13:00:00"),  expr.SetFormula("AddHours('2020-01-01 12:00', 1)").Eval<DateTime>());
+            Assert.AreEqual(DateTime.Parse("2020-01-01 12:01:00"),  expr.SetFormula("AddMinutes('2020-01-01 12:00', 1)").Eval<DateTime>());
+            Assert.AreEqual(DateTime.Parse("2020-01-01 12:00:01"),  expr.SetFormula("AddSeconds('2020-01-01 12:00', 1)").Eval<DateTime>());
+            Assert.AreEqual(DateTime.Parse("2021-01-01 12:00:00"),  expr.SetFormula("AddDate('2020-01-01 12:00', 1,0,0,0,0,0)").Eval<DateTime>());
         } 
 
 
@@ -895,19 +877,19 @@ namespace UnitTest
             Expression expr1 = new Expression("left(\"helloword\",2)");
             Assert.AreEqual("he", expr1.Eval<string>());
 
-            expr1.SetFormular("left(a,20)");
+            expr1.SetFormula("left(a,20)");
             Assert.AreEqual("helloword", expr1.Bind("a", "helloword").Eval<string>());
 
-            expr1.SetFormular("right(\"helloword\",2)");
+            expr1.SetFormula("right(\"helloword\",2)");
             Assert.AreEqual("rd", expr1.Eval<string>());
 
-            expr1.SetFormular("right(\"helloword\",20)");
+            expr1.SetFormula("right(\"helloword\",20)");
             Assert.AreEqual("helloword", expr1.Eval<string>());
 
-            expr1.SetFormular("right(\"helloword\",9)");
+            expr1.SetFormula("right(\"helloword\",9)");
             Assert.AreEqual("helloword", expr1.Eval<string>());
 
-            expr1.SetFormular("right(\"hello\nword\",9)");
+            expr1.SetFormula("right(\"hello\nword\",9)");
             Assert.AreEqual("ello\nword", expr1.Eval<string>());
 
         }
@@ -918,37 +900,37 @@ namespace UnitTest
             Expression expr1 = new Expression("MID(\"abcd\",1,2)");
             Assert.AreEqual("ab", expr1.Eval<string>());
 
-            expr1.SetFormular("MID(\"abcd\",2,1)");
+            expr1.SetFormula("MID(\"abcd\",2,1)");
             Assert.AreEqual("b", expr1.Eval<string>());
 
-            expr1.SetFormular("MID(\"abcd\",1,20)");
+            expr1.SetFormula("MID(\"abcd\",1,20)");
             Assert.AreEqual("abcd", expr1.Eval<string>());
 
-            expr1.SetFormular("MID(\"abcd\",-1,20)");
+            expr1.SetFormula("MID(\"abcd\",-1,20)");
             Assert.AreEqual("", expr1.Eval<string>());
 
-            expr1.SetFormular("MID(\"abcd\",10,20)");
+            expr1.SetFormula("MID(\"abcd\",10,20)");
             Assert.AreEqual("", expr1.Eval<string>());
 
-            expr1.SetFormular("MID(\"abcd\",0,20)");
+            expr1.SetFormula("MID(\"abcd\",0,20)");
             Assert.AreEqual("", expr1.Eval<string>());
 
-            expr1.SetFormular("MID(\"abcd\",4,20)");
+            expr1.SetFormula("MID(\"abcd\",4,20)");
             Assert.AreEqual("d", expr1.Eval<string>());
 
-            expr1.SetFormular("MID(\"zofH4xQcr2KGLrh0Sg9LkMQj0fJLJGgHErVeS1Q1hdoj\nJuI6c9ANVb\nnbF9jIkrsDiV34M32XkobJ2XPubJeJgLueRA2u73fgYPrxLEiO3v2sb98NK9vgWVw6e6OYSuowaWMCSbQGYemqaieWP724mQYW7jTu2sLO\",100,200)");
+            expr1.SetFormula("MID(\"zofH4xQcr2KGLrh0Sg9LkMQj0fJLJGgHErVeS1Q1hdoj\nJuI6c9ANVb\nnbF9jIkrsDiV34M32XkobJ2XPubJeJgLueRA2u73fgYPrxLEiO3v2sb98NK9vgWVw6e6OYSuowaWMCSbQGYemqaieWP724mQYW7jTu2sLO\",100,200)");
             Assert.AreEqual("PrxLEiO3v2sb98NK9vgWVw6e6OYSuowaWMCSbQGYemqaieWP724mQYW7jTu2sLO", expr1.Eval<string>());
 
-            expr1.SetFormular("LPAD(\"1\",10,\"0\")");
+            expr1.SetFormula("LPAD(\"1\",10,\"0\")");
             Assert.AreEqual("0000000001", expr1.Eval<string>());
 
-            expr1.SetFormular("RPAD(\"1\",10,\"0\")");
+            expr1.SetFormula("RPAD(\"1\",10,\"0\")");
             Assert.AreEqual("1000000000", expr1.Eval<string>());
 
-            expr1.SetFormular("RPAD(\"1\",10,\"\")");
+            expr1.SetFormula("RPAD(\"1\",10,\"\")");
             Assert.AreEqual("1", expr1.Eval<string>());
 
-            expr1.SetFormular("RPAD(\"\",10,\"0\")");
+            expr1.SetFormula("RPAD(\"\",10,\"0\")");
             Assert.AreEqual("0000000000", expr1.Eval<string>());
 
         }
@@ -959,13 +941,13 @@ namespace UnitTest
             Expression expr1 = new Expression("reverse(\"abcd\")");
             Assert.AreEqual("dcba", expr1.Eval<string>());
 
-            expr1.SetFormular("left(reverse(\"abcd\"),2)");
+            expr1.SetFormula("left(reverse(\"abcd\"),2)");
             Assert.AreEqual("dc", expr1.Eval<string>());
 
-            expr1.SetFormular("reverse(\"01%663854137#90644.7;973030 4637515397360822@9\")");
+            expr1.SetFormula("reverse(\"01%663854137#90644.7;973030 4637515397360822@9\")");
             Assert.AreEqual("9@2280637935157364 030379;7.44609#731458366%10", expr1.Eval<string>());
 
-            expr1.SetFormular("left(reverse(\"abcd\"),2)==\"dc\"");
+            expr1.SetFormula("left(reverse(\"abcd\"),2)==\"dc\"");
             Assert.AreEqual(true, expr1.Eval<bool>());
         }
 
@@ -975,16 +957,16 @@ namespace UnitTest
             Expression expr1 = new Expression("ISNUMBER(\"0.23\")");
             Assert.AreEqual(true, expr1.Eval<bool>());
 
-            expr1.SetFormular("ISNUMBER(\"0.2a3\")");
+            expr1.SetFormula("ISNUMBER(\"0.2a3\")");
             Assert.AreEqual(false, expr1.Eval<bool>());
 
-            expr1.SetFormular("IF(ISNUMBER(\"0.2a3\")==FALSE,TRUE,false)");
+            expr1.SetFormula("IF(ISNUMBER(\"0.2a3\")==FALSE,TRUE,false)");
             Assert.AreEqual(true, expr1.Eval<bool>());
 
-            expr1.SetFormular("ISNUMBER(\"\")");
+            expr1.SetFormula("ISNUMBER(\"\")");
             Assert.AreEqual(false, expr1.Eval<bool>());
 
-            expr1.SetFormular("ISNUMBER(null)");
+            expr1.SetFormula("ISNUMBER(null)");
             Assert.AreEqual(false, expr1.Eval<bool>());
 
         }
@@ -995,10 +977,10 @@ namespace UnitTest
             Expression expr1 = new Expression("LOWER(\"aBc\")");
             Assert.AreEqual("abc", expr1.Eval<string>());
 
-            expr1.SetFormular("UPPER(\"aBc\")");
+            expr1.SetFormula("UPPER(\"aBc\")");
             Assert.AreEqual("ABC", expr1.Eval<string>());
 
-            expr1.SetFormular("UPPER(\"neW york\")");
+            expr1.SetFormula("UPPER(\"neW york\")");
             Assert.AreEqual("NEW YORK", expr1.Eval<string>());
         }
 
@@ -1069,28 +1051,28 @@ namespace UnitTest
         public void Text_Function_Text_Test()
         {
             Expression expr1 = new Expression();
-            expr1.SetFormular("TEXT(0.1,\"h\")");
+            expr1.SetFormula("TEXT(0.1,\"h\")");
             Assert.AreEqual("2", expr1.Eval<string>());
 
-            expr1.SetFormular("TEXT(2.61,\"[hh]\")");
+            expr1.SetFormula("TEXT(2.61,\"[hh]\")");
             Assert.AreEqual("62", expr1.Eval<string>());
 
-            expr1.SetFormular("TEXT(2.61,\"hh-mm-ss\")");
+            expr1.SetFormula("TEXT(2.61,\"hh-mm-ss\")");
             Assert.AreEqual("14-38-24", expr1.Eval<string>());
 
-            expr1.SetFormular("TEXT(123.005)");
+            expr1.SetFormula("TEXT(123.005)");
             Assert.AreEqual("123.005", expr1.Eval<string>());
 
-            expr1.SetFormular("TEXT(1234.567,\"$#,##0.00\")");
+            expr1.SetFormula("TEXT(1234.567,\"$#,##0.00\")");
             Assert.AreEqual("$1,234.57", expr1.Eval<string>());
 
-            expr1.SetFormular("TEXT(0.285,\"0.0%\")");
+            expr1.SetFormula("TEXT(0.285,\"0.0%\")");
             Assert.AreEqual("28.5%", expr1.Eval<string>());
 
-            expr1.SetFormular("TEXT(122*100000,\"0.00E+00\")");
+            expr1.SetFormula("TEXT(122*100000,\"0.00E+00\")");
             Assert.AreEqual("1.22E+07", expr1.Eval<string>());
 
-            expr1.SetFormular("TEXT(122*100000,\"uyfeg\")");
+            expr1.SetFormula("TEXT(122*100000,\"uyfeg\")");
             Assert.AreEqual("uyfeg", expr1.Eval<string>());
         }
 
@@ -1100,13 +1082,13 @@ namespace UnitTest
             Expression expr1 = new Expression("CHAR(97)");
             Assert.AreEqual("a", expr1.Eval<string>());
 
-            expr1.SetFormular("CODE(\"a\")");
+            expr1.SetFormula("CODE(\"a\")");
             Assert.AreEqual(97, expr1.Eval<int>());
 
-            expr1.SetFormular("CODE(\"\t\")");
+            expr1.SetFormula("CODE(\"\t\")");
             Assert.AreEqual(9, expr1.Eval<int>());
 
-            expr1.SetFormular("CHAR(0)");
+            expr1.SetFormula("CHAR(0)");
             Assert.AreEqual("\0", expr1.Eval<string>());
         }
 
@@ -1116,13 +1098,13 @@ namespace UnitTest
             Expression expr1 = new Expression("REPLACE(\"ABC123\",4,3,\"456\")");
             Assert.AreEqual("ABC456", expr1.Eval<string>());
 
-            expr1.SetFormular("REPLACE(\"123-455-3321\",\"-\",\"\")");
+            expr1.SetFormula("REPLACE(\"123-455-3321\",\"-\",\"\")");
             Assert.AreEqual("1234553321", expr1.Eval<string>());
 
-            expr1.SetFormular("REPLACE(\"123-455-3321\",\"-\",\"@\")");
+            expr1.SetFormula("REPLACE(\"123-455-3321\",\"-\",\"@\")");
             Assert.AreEqual("123@455@3321", expr1.Eval<string>());
 
-            expr1.SetFormular("SUBSTITUTE(\"123-455-3321\",\"-\",\"\")");
+            expr1.SetFormula("SUBSTITUTE(\"123-455-3321\",\"-\",\"\")");
             Assert.AreEqual("1234553321", expr1.Eval<string>());
 
         }
@@ -1133,43 +1115,43 @@ namespace UnitTest
             Expression expr1 = new Expression("FIND(\"ab\",\"ABCDabcABCabc\",6)");
             Assert.AreEqual(11, expr1.Eval<int>());
 
-            expr1.SetFormular("FIND(\"a\",\"ABCDabcABCabc\")");
+            expr1.SetFormula("FIND(\"a\",\"ABCDabcABCabc\")");
             Assert.AreEqual(5, expr1.Eval<int>());
 
-            expr1.SetFormular("FIND(\"\",\"ABCDabcABCabc\")");
+            expr1.SetFormula("FIND(\"\",\"ABCDabcABCabc\")");
             Assert.AreEqual(1, expr1.Eval<int>());
 
-            expr1.SetFormular("FIND(\"\",\"\")");
+            expr1.SetFormula("FIND(\"\",\"\")");
             Assert.AreEqual(1, expr1.Eval<int>());
 
-            expr1.SetFormular("SEARCH(\"A\",\"ABC\")");
+            expr1.SetFormula("SEARCH(\"A\",\"ABC\")");
             Assert.AreEqual(1, expr1.Eval<int>());
 
-            expr1.SetFormular("SEARCH(\"A\",\"AEHABC\",4)");
+            expr1.SetFormula("SEARCH(\"A\",\"AEHABC\",4)");
             Assert.AreEqual(4, expr1.Eval<int>());
 
-            expr1.SetFormular("SEARCH(\"A\n\",\"AEHA\nBC\")");
+            expr1.SetFormula("SEARCH(\"A\n\",\"AEHA\nBC\")");
             Assert.AreEqual(4, expr1.Eval<int>());
 
-            expr1.SetFormular("SEARCH(\"Ax\",\"AEHABC\",4)");
+            expr1.SetFormula("SEARCH(\"Ax\",\"AEHABC\",4)");
             Assert.AreEqual(-1, expr1.Eval<int>());
 
-            expr1.SetFormular("SEARCH(\"\",\"\",4)");
+            expr1.SetFormula("SEARCH(\"\",\"\",4)");
             Assert.AreEqual(-1, expr1.Eval<int>());
 
-            expr1.SetFormular("SEARCH(\"\",\"\")");
+            expr1.SetFormula("SEARCH(\"\",\"\")");
             Assert.AreEqual(1, expr1.Eval<int>());
 
-            expr1.SetFormular("SEARCH(\"Sample\",\"this is a sample string. Just a sample\")");
+            expr1.SetFormula("SEARCH(\"Sample\",\"this is a sample string. Just a sample\")");
             Assert.AreEqual(11, expr1.Eval<int>());
 
-            expr1.SetFormular("FIND(\"Sample\",\"this is a sample string. Just a sample\")");
+            expr1.SetFormula("FIND(\"Sample\",\"this is a sample string. Just a sample\")");
             Assert.AreEqual(-1, expr1.Eval<int>());
 
-            expr1.SetFormular("IF(SEARCH(\"A\",\"AEHABC\",4)>1,CONCAT(LEFT(name,2),\"WORD\"),\"N/A\")");
+            expr1.SetFormula("IF(SEARCH(\"A\",\"AEHABC\",4)>1,CONCAT(LEFT(name,2),\"WORD\"),\"N/A\")");
             Assert.AreEqual("HEWORD", expr1.Bind("name", "HELLO").Eval<string>());
 
-            expr1.SetFormular("IF(SEARCH(\"A\",\"AEHABC\",4)>100,CONCAT(LEFT(name,2),\"WORD\"),\"N/A\")");
+            expr1.SetFormula("IF(SEARCH(\"A\",\"AEHABC\",4)>100,CONCAT(LEFT(name,2),\"WORD\"),\"N/A\")");
             Assert.AreEqual("N/A", expr1.Bind("name", "HELLO").Eval<string>());
         }
 
@@ -1179,13 +1161,13 @@ namespace UnitTest
             Expression expr1 = new Expression("CONCAT(\"ab\",\"ABCDabcABCabc\")");
             Assert.AreEqual("abABCDabcABCabc", expr1.Eval<string>());
 
-            expr1.SetFormular("CONCAT(\"\",\"ABCDabc\nAB;C\"\"abc\")");
+            expr1.SetFormula("CONCAT(\"\",\"ABCDabc\nAB;C\"\"abc\")");
             Assert.AreEqual("ABCDabc\nAB;C\"abc", expr1.Eval<string>());
 
-            expr1.SetFormular("CONCAT(null,\"ABCDabc\nAB;C\"\"abc\")");
+            expr1.SetFormula("CONCAT(null,\"ABCDabc\nAB;C\"\"abc\")");
             Assert.AreEqual("ABCDabc\nAB;C\"abc", expr1.Eval<string>());
 
-            expr1.SetFormular("CONCAT(null,null)");
+            expr1.SetFormula("CONCAT(null,null)");
             Assert.AreEqual("", expr1.Eval<string>());
         }
 
@@ -1195,13 +1177,13 @@ namespace UnitTest
             Expression expr1 = new Expression("ISBLANK(\"ab\")");
             Assert.AreEqual(false, expr1.Eval<bool>());
 
-            expr1.SetFormular("ISBLANK(\"\")");
+            expr1.SetFormula("ISBLANK(\"\")");
             Assert.AreEqual(true, expr1.Eval<bool>());
 
-            expr1.SetFormular("ISBLANK(null)");
+            expr1.SetFormula("ISBLANK(null)");
             Assert.AreEqual(true, expr1.Eval<bool>());
 
-            expr1.SetFormular("ISBLANK(\"\n\")");
+            expr1.SetFormula("ISBLANK(\"\n\")");
             Assert.AreEqual(false, expr1.Eval<bool>());
         }
 

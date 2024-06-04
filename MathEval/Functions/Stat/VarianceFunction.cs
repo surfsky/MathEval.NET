@@ -29,18 +29,17 @@ using System.Collections.Generic;
 namespace Org.MathEval.Functions
 {
     /// <summary>
-    /// SUM(1,2,3) -> 6
-    /// new Evaluator('SUM(abc)').bind('abc',new List<decimal>{1,2,3}).eval() -> 6
+    /// Variance(1,2,3) -> 1
     /// </summary>
-    public class SumFunction : IFunction
+    public class VarianceFunction : IFunction
     {
         /// <summary>Get Information</summary>
+        /// <returns>FunctionDefs</returns>
         public List<FunctionDef> GetDefs()
         {
             return new List<FunctionDef>{
-                new FunctionDef(Consts.Sum, typeof(decimal), -1, new Type[] { typeof(decimal) }),
-                new FunctionDef(Consts.Sum, typeof(decimal), 1,  new Type[] { typeof(Object) })
-            };
+                new FunctionDef(Consts.Variance, typeof(decimal), -1, typeof(decimal)),
+                new FunctionDef(Consts.Variance, typeof(decimal), 1,  typeof(object))};
         }
 
         /// <summary>Execute</summary>
@@ -51,36 +50,61 @@ namespace Org.MathEval.Functions
         public object Execute(List<object> args, ExpressionContext dc, string funcName = "")
         {
             if (args.Count == 1 && Common.IsList(args[0]))
-            {
-                return this.SumList((IEnumerable)args[0], dc);
-            }
-            return this.Sum(args, dc);
+                return this.VarianceList((IEnumerable)args[0], dc);
+            return this.Variance(args, dc);
         }
 
-        /// <summary>Sum</summary>
-        private decimal Sum(List<object> args, ExpressionContext dc)
+        /// <summary>Avg</summary>
+        private double Variance(List<object> args, ExpressionContext dc)
         {
+            // 计算总和和平均值
+            int n = args.Count;
             decimal sum = 0;
-            foreach (Object item in args)
+            foreach (object item in args)
             {
+                if(!Common.IsNumber(item))
+                    throw new Exception(string.Format("{0} {1}", Consts.ShowMessage, "AVG"));
                 sum += Common.ToDecimal(item, dc.Culture);
             }
-            return sum;
-        }
+            double ave = (double)(sum / n);
 
-        /// <summary>Sum</summary>
-        private decimal SumList(IEnumerable arg, ExpressionContext dc)
-        {
-            decimal sum = 0;
-            foreach (Object item in arg)
+            // 计算平方差的和
+            double total = 0;
+            foreach (object item in args)
             {
-                if (Common.IsNumber(item))
-                {
-                    sum += Common.ToDecimal(item, dc.Culture);
-                }
+                var d = Common.ToDouble(item, dc.Culture);
+                total += (d - ave) * (d - ave);
             }
-            return sum;
+
+            // 返回方差
+            return total/n;
         }
 
+        /// <summary>Average</summary>
+        private double VarianceList(IEnumerable args, ExpressionContext dc)
+        {
+            // 计算总和和平均值
+            var n = 0;
+            decimal sum = 0;
+            foreach (object item in args)
+            {
+                if (!Common.IsNumber(item))
+                    throw new Exception(string.Format("{0} {1}", Consts.ShowMessage, "AVG"));
+                sum += Common.ToDecimal(item, dc.Culture);
+                n++;
+            }
+            double ave = (double)(sum / n);
+
+            // 计算平方差的和
+            double total = 0;
+            foreach (object item in args)
+            {
+                var d = Common.ToDouble(item, dc.Culture);
+                total += (d - ave) * (d - ave);
+            }
+
+            // 返回方差
+            return total/n;
+        }
     }
 }

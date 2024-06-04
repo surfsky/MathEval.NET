@@ -10,7 +10,7 @@
     <Description>Matheval is a mathematical expressions evaluator library for .NET. Allows to evaluate mathematical, boolean, string and datetime expressions on the fly. Official document and usage examples: https://matheval.org/math-expression-eval-for-c-sharp/</Description>
     <Copyright>Copyright © MathEval.org 2021</Copyright> 
     <RootNamespace>org.matheval</RootNamespace>
-    <AssemblyName>org.matheval</AssemblyName>
+    <AssemblyName>MathEval</AssemblyName>
     <Authors>matheval.org</Authors>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://matheval.org/</PackageProjectUrl>

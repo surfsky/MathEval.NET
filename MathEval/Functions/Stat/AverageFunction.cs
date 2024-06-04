@@ -34,9 +34,7 @@ namespace Org.MathEval.Functions
     /// </summary>
     public class AverageFunction : IFunction
     {
-        /// <summary>
-        /// Get Information
-        /// </summary>
+        /// <summary>Get Information</summary>
         /// <returns>FunctionDefs</returns>
         public List<FunctionDef> GetDefs()
         {
@@ -53,36 +51,24 @@ namespace Org.MathEval.Functions
         public object Execute(List<object> args, ExpressionContext dc, string funcName = "")
         {
             if (args.Count == 1 && Common.IsList(args[0]))
-            {
                 return this.AvgList((IEnumerable)args[0], dc);
-            }
             return this.Avg(args, dc);
         }
 
-        /// <summary>
-        /// Avg
-        /// </summary>
-        /// <param name="args">args</param>
-        /// <returns>Value Avg</returns>
+        /// <summary>Avg</summary>
         private decimal Avg(List<object> args, ExpressionContext dc)
         {
             decimal sum = 0;
             foreach (Object item in args)
             {
                 if(!Common.IsNumber(item))
-                {
                     throw new Exception(string.Format("{0} {1}", Consts.ShowMessage, "AVG"));
-                }
                 sum += Common.ToDecimal(item, dc.Culture);
             }
             return sum / args.Count;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="arg"></param>
-        /// <returns></returns>
+        /// <summary>Average</summary>
         private decimal AvgList(IEnumerable arg, ExpressionContext dc)
         {
             decimal sum = 0;

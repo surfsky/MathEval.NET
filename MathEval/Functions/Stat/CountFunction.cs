@@ -29,17 +29,17 @@ using System.Collections.Generic;
 namespace Org.MathEval.Functions
 {
     /// <summary>
-    /// SUM(1,2,3) -> 6
-    /// new Evaluator('SUM(abc)').bind('abc',new List<decimal>{1,2,3}).eval() -> 6
+    /// Count(1,2,3) -> 3
+    /// new Evaluator('count(abc)').bind('abc',new List<decimal>{1,2,3}).eval() -> 3
     /// </summary>
-    public class SumFunction : IFunction
+    public class CountFunction : IFunction
     {
         /// <summary>Get Information</summary>
         public List<FunctionDef> GetDefs()
         {
             return new List<FunctionDef>{
-                new FunctionDef(Consts.Sum, typeof(decimal), -1, new Type[] { typeof(decimal) }),
-                new FunctionDef(Consts.Sum, typeof(decimal), 1,  new Type[] { typeof(Object) })
+                new FunctionDef(Consts.Count, typeof(int), -1, typeof(object) ),
+                new FunctionDef(Consts.Count, typeof(int), 1,  typeof(object)  )
             };
         }
 
@@ -51,35 +51,19 @@ namespace Org.MathEval.Functions
         public object Execute(List<object> args, ExpressionContext dc, string funcName = "")
         {
             if (args.Count == 1 && Common.IsList(args[0]))
-            {
-                return this.SumList((IEnumerable)args[0], dc);
-            }
-            return this.Sum(args, dc);
+                return CountList((IEnumerable)args[0]);
+
+            return args.Count;
         }
 
-        /// <summary>Sum</summary>
-        private decimal Sum(List<object> args, ExpressionContext dc)
-        {
-            decimal sum = 0;
-            foreach (Object item in args)
-            {
-                sum += Common.ToDecimal(item, dc.Culture);
-            }
-            return sum;
-        }
 
         /// <summary>Sum</summary>
-        private decimal SumList(IEnumerable arg, ExpressionContext dc)
+        private int CountList(IEnumerable args)
         {
-            decimal sum = 0;
-            foreach (Object item in arg)
-            {
-                if (Common.IsNumber(item))
-                {
-                    sum += Common.ToDecimal(item, dc.Culture);
-                }
-            }
-            return sum;
+            int n = 0;
+            foreach (object item in args)
+                n++;
+            return n;
         }
 
     }

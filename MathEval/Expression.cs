@@ -166,12 +166,12 @@ namespace Org.MathEval
         }
 
         /// <summary>Set Input fomular text for current expression instance</summary>
-        /// <param name="formular">Input formular text or math expression string</param>
+        /// <param name="formula">Input formular text or math expression string</param>
         /// <returns>Expression instance</returns>
-        public Expression SetFormular(string formular)
+        public Expression SetFormula(string formula)
         {
             this.Clear();
-            this.GetParser().SetFomular(formular);
+            this.GetParser().SetFormula(formula);
             return this;
         }
 

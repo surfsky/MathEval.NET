@@ -8,13 +8,13 @@
 \\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathExpressionEval-github\MathExpressionEval\obj\Debug\net45\MathEval.sourcelink.json
 \\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathExpressionEval-github\MathExpressionEval\obj\Debug\net45\org.matheval.dll
 \\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathExpressionEval-github\MathExpressionEval\obj\Debug\net45\org.matheval.pdb
-\\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEval\bin\Debug\net45\org.matheval.dll
-\\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEval\bin\Debug\net45\org.matheval.pdb
 \\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEval\obj\Debug\net45\MathEval.csproj.AssemblyReference.cache
 \\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEval\obj\Debug\net45\MathEval.GeneratedMSBuildEditorConfig.editorconfig
 \\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEval\obj\Debug\net45\MathEval.AssemblyInfoInputs.cache
 \\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEval\obj\Debug\net45\MathEval.AssemblyInfo.cs
 \\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEval\obj\Debug\net45\MathEval.csproj.CoreCompileInputs.cache
 \\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEval\obj\Debug\net45\MathEval.sourcelink.json
-\\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEval\obj\Debug\net45\org.matheval.dll
-\\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEval\obj\Debug\net45\org.matheval.pdb
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEval\bin\Debug\net45\MathEval.dll
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEval\bin\Debug\net45\MathEval.pdb
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEval\obj\Debug\net45\MathEval.dll
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEval\obj\Debug\net45\MathEval.pdb

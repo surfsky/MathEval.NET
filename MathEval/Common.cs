@@ -172,6 +172,12 @@ namespace Org.MathEval
                 return (decimal)value;
             return Convert.ToDecimal(value, cultureInfo);
         }
+        public static double ToDouble(object value, CultureInfo cultureInfo)
+        {
+            if (value is double)
+                return (double)value;
+            return Convert.ToDouble(value, cultureInfo);
+        }
 
         /// <summary>Parse to datetime</summary>
         public static DateTime ToDateTime(object value, CultureInfo cultureInfo=null)

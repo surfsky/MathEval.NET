@@ -102,7 +102,7 @@ namespace Org.MathEval
         //-------------------------------------------------
         /// <summary>Provide expression for lexer@param fumular input expression</summary>
         /// <param name="formular">formular</param>
-        public void SetFomular(string formular)
+        public void SetFormula(string formular)
         {
             this.Lexer = new Lexer(formular, this);
             //this.Lexer.GetToken();
