@@ -1,9 +1,7 @@
 ﻿------------------------------
 Task
 ------------------------------
-/实现统计 count() 方法
-实现方差方法  variance()
-支持 [xxxxx] 这样的 token
+支持 [xxxxx] 这样的 token bingding
 发布nuget package matheval.net
 参考：https://matheval.org/math-expression-eval-for-c-sharp/ 里面有完整的datetime函数实现，仅供参考。
 
@@ -14,7 +12,6 @@ Task
 已完成
 ------------------------------
 /程序集名称改为 MathEval
-/Expression.SetFomular() -> SetFormula()
 
 重构 Parser
     /重构以支持扩展方法
@@ -25,13 +22,15 @@ Task
     /支持布尔运算符：!
     /新增时间处理函数：Date(.), Age(.)
     /实现 Like 函数
+    /实现计数 count() 方法
+    /实现方差方法  variance()
     /BaseOperator.GetAss() -> GetAssoc()
     
 
 重构 Expression
     /ExecuteCallFunc 修改传递参数，改为 List<object>，没必要用字典。就是注意下标都要减一。
     /Expression.Gc() -> Clear();
-    /Expression.SetFomular() -> SetFormular();
+    /Expression.SetFomular() -> SetFormula()
 
 重构 Node
     /Node.Iop -> Node.Op

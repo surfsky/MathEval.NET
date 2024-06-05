@@ -22,7 +22,7 @@ And make many changes:
 Using Package Manager
 
 ```bash
-PM> Install-Package MathEval.NET -Version 4.5.0.0
+PM> Install-Package MathEval.NET
 ```
 
 # 3. Supported operators, contants, functions
