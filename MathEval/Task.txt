@@ -2,7 +2,6 @@
 Task
 ------------------------------
 支持 [xxxxx] 这样的 token bingding
-发布nuget package matheval.net
 参考：https://matheval.org/math-expression-eval-for-c-sharp/ 里面有完整的datetime函数实现，仅供参考。
 
 
@@ -11,6 +10,7 @@ Task
 ------------------------------
 已完成
 ------------------------------
+/发布nuget package matheval.net
 /程序集名称改为 MathEval
 
 重构 Parser
