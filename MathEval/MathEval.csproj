@@ -19,9 +19,9 @@
 	  <RepositoryUrl>https://github.com/surfsky/MathEval.NET</RepositoryUrl>
 	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>2.0.0.0</Version>
-    <AssemblyVersion>1.0.0.2</AssemblyVersion>
-    <FileVersion>1.0.0.2</FileVersion>    
+    <Version>2.0.0.3</Version>
+    <AssemblyVersion>2.0.0.3</AssemblyVersion>
+    <FileVersion>2.0.0.3</FileVersion>    
     <SignAssembly>false</SignAssembly>    
     <RepositoryType>git</RepositoryType>    
     <PackageReadmeFile>README.md</PackageReadmeFile>

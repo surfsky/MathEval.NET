@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "tnzqvRmllzHV0w/bzsTztAzeO4+UkkUwq/UJWWrO2EE/yDel6+qVrL62Djfkigqgkf6HLlUAC4z1+oN0G7/mow==",
+  "dgSpecHash": "V8sKnnzJG2k=",
   "success": true,
   "projectFilePath": "\\\\Mac\\Home\\Downloads\\Dev\\240208-OfficeUtils\\MathEval-github\\MathEval\\MathEval.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\CJH\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\CJH\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.3\\microsoft.netframework.referenceassemblies.1.0.3.nupkg.sha512",
     "C:\\Users\\CJH\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net45\\1.0.3\\microsoft.netframework.referenceassemblies.net45.1.0.3.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+    "C:\\Users\\CJH\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
   ],
   "logs": []
 }

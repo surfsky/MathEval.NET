@@ -66,7 +66,7 @@
           }
         }
       },
-      "matheval.net/2.0.0": {
+      "matheval.net/2.0.0.3": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.5",
         "compile": {
@@ -623,7 +623,7 @@
         "mstest.testframework.nuspec"
       ]
     },
-    "matheval.net/2.0.0": {
+    "matheval.net/2.0.0.3": {
       "type": "project",
       "path": "../MathEval/MathEval.csproj",
       "msbuildProject": "../MathEval/MathEval.csproj"
@@ -635,7 +635,7 @@
       "MSTest.TestFramework >= 1.3.2",
       "Microsoft.NET.Test.Sdk >= 15.9.0",
       "Microsoft.NETFramework.ReferenceAssemblies >= 1.0.3",
-      "matheval.net >= 2.0.0"
+      "matheval.net >= 2.0.0.3"
     ]
   },
   "packageFolders": {
@@ -684,6 +684,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -709,7 +714,7 @@
             "autoReferenced": true
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

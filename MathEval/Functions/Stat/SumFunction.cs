@@ -39,7 +39,7 @@ namespace Org.MathEval.Functions
         {
             return new List<FunctionDef>{
                 new FunctionDef(Consts.Sum, typeof(decimal), -1, new Type[] { typeof(decimal) }),
-                new FunctionDef(Consts.Sum, typeof(decimal), 1,  new Type[] { typeof(Object) })
+                new FunctionDef(Consts.Sum, typeof(decimal), 1,  new Type[] { typeof(object) })
             };
         }
 

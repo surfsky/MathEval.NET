@@ -24,8 +24,10 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Org.MathEval;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 
 namespace UnitTest
 {
@@ -322,14 +324,87 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void Bool_Like_Test()
+        public void Bool_IsLike_Test()
         {
             var expr = new Expression();
-            Assert.AreEqual(true, expr.SetFormula("LIKE('Abcd', '_bc_')").Eval<bool>());
-            Assert.AreEqual(true, expr.SetFormula("LIKE('Abcd', '*b*')").Eval<bool>());
-            Assert.AreEqual(true, expr.SetFormula("LIKE('Abcd', '%b%')").Eval<bool>());
-            Assert.AreEqual(true, expr.SetFormula("LIKE('Abcd', '')").Eval<bool>());
+            Assert.AreEqual(true, expr.SetFormula("ISLIKE('Abcd', '_bc_')").Eval<bool>());
+            Assert.AreEqual(true, expr.SetFormula("ISLIKE('Abcd', '*b*')").Eval<bool>());
+            Assert.AreEqual(true, expr.SetFormula("ISLIKE('Abcd', '%b%')").Eval<bool>());
+            Assert.AreEqual(true, expr.SetFormula("ISLIKE('Abcd', '')").Eval<bool>());
         }
+
+        [TestMethod]
+        public void Bool_IsIn_Test()
+        {
+            var expr = new Expression();
+            Assert.AreEqual(true,  expr.SetFormula("ISIN('A', 'A', 'B', 'C')").Eval<bool>());
+            Assert.AreEqual(true,  expr.SetFormula("ISIN('A', 'A,B,C')").Eval<bool>());
+            Assert.AreEqual(true,  expr.SetFormula("ISIN(1, '1,2,3')").Eval<bool>());
+            Assert.AreEqual(true,  expr.SetFormula("ISIN(1, 1, 2, 3)").Eval<bool>());
+            Assert.AreEqual(false, expr.SetFormula("ISIN(1, 2, 3, 4)").Eval<bool>());
+        }
+
+        [TestMethod]
+        public void Bool_IsBetween_Test()
+        {
+            var expr = new Expression();
+            Assert.AreEqual(true, expr.SetFormula("ISBETWEEN('A', 'A', 'B')").Eval<bool>());
+            Assert.AreEqual(true, expr.SetFormula("ISBETWEEN(1, 1, 5)").Eval<bool>());
+            Assert.AreEqual(true, expr.SetFormula("ISBETWEEN(Date('2020-01-02'), Date('2020-01-01'), Date('2020-01-03'))").Eval<bool>());
+        }
+
+
+
+        [TestMethod]
+        public void Text_ext_Test()
+        {
+            var expr = new Expression();
+            /*
+            contains('abcd', 'a') -> true
+            regex('abc13df', '/d.*') -> 13
+            regexs('abc13def26ghi33', '/d.*') -> ['13', '26', '33']
+            number('abc13d') -> 13
+            numbers('abc13def26ghi33') -> [13, 26, 33]
+            alltext('abc13def26ghi33中文') -> 'abcdefghi中文'
+            entext('abc13def26ghi33中文')  -> 'abcdefghi'
+            cntext('abc13def26ghi33中文')  -> '中文'
+            cnmobile('abc15305770001sss') -> '15305770001'
+            cnnumber('abc1530sss') -> '壹仟伍佰叁拾'
+             */
+            Assert.AreEqual(true, expr.SetFormula("contains('abcd', 'a')").Eval<bool>());
+            Assert.AreEqual("13", expr.SetFormula(@"regex('abc13df', '\d+')").Eval<string>());
+            Assert.AreEqual("13", expr.SetFormula("number('abc13d')").Eval<string>());
+            Assert.AreEqual("abcdefghi中文", expr.SetFormula("alltext('abc13def26ghi33中文')").Eval<string>());
+            Assert.AreEqual("abcdefghi", expr.SetFormula("entext('abc13def26ghi33中文')").Eval<string>());
+            Assert.AreEqual("中文", expr.SetFormula("cntext('abc13def26ghi33中文')").Eval<string>());
+            Assert.AreEqual("15305770001", expr.SetFormula("cnmobile('abc15305770001sss')").Eval<string>());
+            Assert.AreEqual("壹仟伍佰叁拾", expr.SetFormula("cnnumber('abc1530sss')").Eval<string>());
+
+        }
+
+        [TestMethod]
+        public void List_Test()
+        {
+            var arr = new string[] { "a", "b", "c" };
+            var list = new List<string> { "a", "b", "c" };
+            Assert.AreEqual(true, IsType(arr.GetType(), typeof(Array)));
+            Assert.AreEqual(true, IsInterface(arr.GetType(), typeof(IList)));
+            Assert.AreEqual(true, IsInterface(arr.GetType(), typeof(IEnumerable)));
+            Assert.AreEqual(true, IsInterface(list.GetType(), typeof(IList)));
+            Assert.AreEqual(true, IsInterface(list.GetType(), typeof(IEnumerable)));
+        }
+
+
+        public static bool IsType(Type type, Type type2)
+        {
+            return type.IsSubclassOf(type2);
+        }
+        public static bool IsInterface(Type type, Type interfaceType)
+        {
+            return type.GetInterfaces().Any(t => t == interfaceType);
+        }
+
+
 
         [TestMethod]
         public void Bool_AndOr_Test()

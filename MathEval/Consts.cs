@@ -26,6 +26,9 @@ using System.Collections.Generic;
 
 namespace Org.MathEval
 {
+    /// <summary>
+    /// Consts string for conviniant to transport.
+    /// </summary>
     public class Consts
     {
         public const string MSG_WRONG_OP_ACOS = "Value input must be greater than or equal to -1, but less than or equal to 1.";
@@ -105,7 +108,7 @@ namespace Org.MathEval
         //-------------------------------------------------
         public const string Text = "text";
         public const string LEFT = "left";
-        public const string Isblank = "isblank";
+        public const string IsBlank = "isblank";
         public const string Proper = "proper";
         public const string Substitute = "substitute";
         public const string Search = "search";

@@ -75,7 +75,7 @@ namespace Org.MathEval.Functions
                 {
                     return Common.Round(Common.ToDecimal(args[0], dc.Culture), dc);
                 }
-                catch(Exception e)
+                catch
                 {
                     throw new Exception(string.Format(Consts.MSG_METH_PARAM_INVALID, (object[])(new string[] { "value" })));
                 }

@@ -27,6 +27,7 @@ using Org.MathEval.Nodes;
 using Org.MathEval.Operators;
 using Org.MathEval.Operators.Binop;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -337,6 +338,14 @@ namespace Org.MathEval
             return result;
         }
 
+
+        public static bool IsInterface(Type type, Type interfaceType)
+        {
+            if (type == interfaceType)
+                return true;
+            return type.GetInterfaces().Any(t => t == interfaceType);
+        }
+
         /// <summary>
         /// Eval fomular and return value
         /// </summary>
@@ -355,7 +364,8 @@ namespace Org.MathEval
                 typeof(T) == typeof(string) ||
                 typeof(T) == typeof(DateTime) ||
                 typeof(T) == typeof(TimeSpan) ||
-                typeof(T) == typeof(DayOfWeek) 
+                typeof(T) == typeof(DayOfWeek) ||
+                IsInterface(typeof(T), typeof(IList))
                 ))
             {
                 throw new Exception(string.Format(Consts.MSG_RETURN_TYPE_NOT_SUPPORT, typeof(T) ));
@@ -369,6 +379,7 @@ namespace Org.MathEval
             object result = this.VisitNode(Root);
 
 
+            // Pre process result
             // Convert all numeric type to decimal
             if (Common.IsNumber(result) && !(typeof(T) == typeof(DateTime) || typeof(T) == typeof(TimeSpan)))
             {
@@ -388,8 +399,12 @@ namespace Org.MathEval
             {
                 result = Decimal.ToDouble(((decimal)result));
             }
+
             // convert object to expected type and return
-            return (T)Convert.ChangeType(result, typeof(T));
+            if (result is IList)
+                return (T)result;
+            else
+                return (T)Convert.ChangeType(result, typeof(T));
         }
 
 

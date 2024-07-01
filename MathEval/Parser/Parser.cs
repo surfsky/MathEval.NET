@@ -228,7 +228,7 @@ namespace Org.MathEval
         }
 
 
-        /// <summary>该类是否实现接口</summary>
+        /// <summary>Is interface</summary>
         public bool IsImplementInterface(Type type, Type interfaceType)
         {
             return !type.IsInterface && interfaceType.IsAssignableFrom(type);
@@ -358,7 +358,7 @@ namespace Org.MathEval
                     //    throw new Exception();
                     //funcExecuter = (IFunction)obj;
                 }
-                catch (Exception e)
+                catch
                 {
                     throw new Exception(string.Format(Consts.MSG_METH_NOTFOUND, (object[])(new string[] { funcName.ToUpperInvariant() })));
                 }

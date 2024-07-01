@@ -39,6 +39,6 @@
 \\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEvalTests\obj\Debug\net45\MathEvalTests.AssemblyInfo.cs
 \\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEvalTests\obj\Debug\net45\MathEvalTests.csproj.CoreCompileInputs.cache
 \\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEvalTests\obj\Debug\net45\MathEvalTests.sourcelink.json
-\\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEvalTests\obj\Debug\net45\MathEvalTests.csproj.CopyComplete
 \\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEvalTests\bin\Debug\net45\MathEval.dll
 \\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEvalTests\bin\Debug\net45\MathEval.pdb
+\\Mac\Home\Downloads\Dev\240208-OfficeUtils\MathEval-github\MathEvalTests\obj\Debug\net45\MathEval.91C0CF46.Up2Date

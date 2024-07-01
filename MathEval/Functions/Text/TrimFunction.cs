@@ -33,20 +33,13 @@ namespace Org.MathEval.Functions
     /// </summary>
     public class TrimFunction : IFunction
     {
-        /// <summary>
-        /// Get Information
-        /// </summary>
-        /// <returns>FunctionDefs</returns>
+        /// <summary>Get Information</summary>
         public List<FunctionDef> GetDefs()
         {
             return new List<FunctionDef> { new FunctionDef(Consts.Trim, typeof(string), 1, new Type[] { typeof(string) }) };
         }
 
         /// <summary>Execute</summary>
-        /// <param name="args">args</param>
-        /// <param name="dc">expression context</param>
-        /// <param name="funcName">function name</param>
-        /// <returns>Value</returns>
         public object Execute(List<object> args, ExpressionContext dc, string funcName = "")
         {
             if (!string.IsNullOrEmpty(Common.ToString(args[0], dc.Culture)))

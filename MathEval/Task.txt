@@ -1,6 +1,11 @@
 ﻿------------------------------
 Task
 ------------------------------
+实现列表对象
+    var list = [1, 2, 3];
+    var txt = combine(',', ['a', 'b', 'c']);
+
+
 支持 [xxxxx] 这样的 token bingding
 参考：https://matheval.org/math-expression-eval-for-c-sharp/ 里面有完整的datetime函数实现，仅供参考。
 

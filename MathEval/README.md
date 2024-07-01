@@ -30,7 +30,7 @@ PM> Install-Package MathEval.NET
 ## 3.1 Supported Operators
 
 | Operator | Description                                                              
-|----------|----------------------------------------------------------------------
+|:---------|:----------------------------------------------------------------------
 | +        | Additive  / Unary plus / Concatenate string / Datetime addition
 | -        | Subtraction  / Unary minus / Datetime subtraction
 | *        | Multiplication , can be omitted in front of an open bracket
@@ -50,7 +50,7 @@ PM> Install-Package MathEval.NET
 ## 3.2 Supported Constants
 
 | Constant | Description                                                              
-|----------|---------------------------------------------------------
+|:---------|:---------------------------------------------------------
 | E        | The value of _e_
 | PI       | The value of _PI_
 | TRUE     | The boolean true value
@@ -63,7 +63,7 @@ PM> Install-Package MathEval.NET
 
 
 | Conditional statement                                             | Description                                              
-|-------------------------------------------------------------------|----------------------------------------------------------
+|:------------------------------------------------------------------|:----------------------------------------------------------
 | IF(condition, valueIfTrue, valueIfFalse)                          | Example: `IF(2>1,"Pass","Fail")`
 | SWITCH(expression, val1, result1, [val2,result2], …, [default])  | Example: `SWITCH(3+2,5,"Apple",7,"Mango",3,"Good","N/A")`
 
@@ -73,17 +73,19 @@ PM> Install-Package MathEval.NET
 
 
 | Function                         | Description                                              
-|----------------------------------|----------------------------------------------------------
+|:---------------------------------|:----------------------------------------------------------
 | AND(logical1, [logical2], …)    | Determine if all conditions are TRUE
 | OR(logical1, [logical2], …)     | Determine if any conditions in a test are TRUE
 | NOT(_logical_)                   | To confirm one value is not equal to another
 | XOR(logical1, [logical2], …)    | Exclusive OR function
+| ISIN(o, o1, o2, ...)             | Returns TRUE when a given string in a arrry. eg: IsIn("A", "A", "B", "C") -> true
+| ISBETWEEN(o, o1, o2)             | Returns TRUE when a given object is high than o1 and lower than o2. eg: IsBetween("A", "A", "B"), IsBetween(1, 0, 3), IsBetween(Date('2021-02-01'), '2021-01-01', '2021-03-01') -> true
 
 
 ## 3.5 Supported math functions
 
 | Function                         | Description                                              
-|----------------------------------|----------------------------------------------------------
+|:---------------------------------|:----------------------------------------------------------
 | MOD(number, divisor)             |  Get remainder of two given numbers after division operator.
 | ROUND(number, num_digits)        |  Returns the rounded approximation of given number using half-even rounding mode  ( you can change to another rounding mode)
 | FLOOR(number, significance)      |  Rounds a given number towards zero to the nearest multiple of a specified significance
@@ -102,7 +104,7 @@ PM> Install-Package MathEval.NET
 ## 3.6 Supported math trigonomatric functions
 
 | Function                         | Description                                              
-|----------------------------------|----------------------------------------------------------
+|:---------------------------------|:----------------------------------------------------------
 | PI()                             |  Return value of Pi
 | SIN(number)                      |  Returns the trigonometric sine of the angle given in radians
 | SINH(number)                     |  Returns the hyperbolic sine of a number
@@ -125,7 +127,7 @@ PM> Install-Package MathEval.NET
 ## 3.7 Supported math statistic functions
 
 | Function                          | Description                                              
-|-----------------------------------|----------------------------------------------------------
+|:----------------------------------|:----------------------------------------------------------
 | SUM(number1, [number2],…)        |  Return sum of numbers supplied
 | AVERAGE(number1, [number2],…)    |  Return average of numbers supplied
 | MIN(number1, [number2],…)        |  Return the smallest value from the numbers supplied
@@ -138,7 +140,7 @@ PM> Install-Package MathEval.NET
 ## 3.8 Supported text functions
 
 | Function                                             | Description                                              
-|------------------------------------------------------|----------------------------------------------------------
+|:-----------------------------------------------------|:----------------------------------------------------------
 | LEFT(text, num_chars)                                | Extracts a given number of characters from the left side of a supplied text string
 | RIGHT(text, num_chars)                               | Extracts a given number of characters from the right side of a supplied text string
 | MID(text, start_num, num_chars)                      | Extracts a given number of characters from the middle of a supplied text string
@@ -162,13 +164,13 @@ PM> Install-Package MathEval.NET
 | CODE(char)                                           | Returns a ascii code of a character
 | VALUE(text)                                          | Convert numbers stored as text to numbers
 |------------------------------------------------------|----------------------------------------------------------
-| LIKE(text, sqlpattern)                               | Returns TRUE when a given string match the sqlpattern string(support _*%). eg: like("Abcd", "_bc%")
+| ISLIKE(text, sqlpattern)                             | Returns TRUE when a given string match the sqlpattern string(support _*%). eg: IsLike("Abcd", "_bc%") -> true
 
 
 Text() Example:  
 
 | Function                                                                      | Description
-|-------------------------------------------------------------------------------|---------------------------------------------------
+|:------------------------------------------------------------------------------|:---------------------------------------------------
 | TEXT(123)                                                                     | 123
 | TEXT(DATEVALUE("2021-01-23"),"dd-MM-yyyy")                                    | 23-01-2021
 | TEXT(2.61,"hh:mm")                                                            | 14:38
@@ -179,10 +181,18 @@ Text() Example:
 
 
 
-# 3.9 Supported DateTime functions
+# 3.9 Supported List functions
+
+| Function                         | Description                               
+|:---------------------------------|:----------------------------------------------------------
+| Split('A;B;C')                   | return list object
+| Combine(',', 'A', 'B', 'C')      | return string sperated by seperator. -> 'A,B,C'
+
+
+# 3.10 Supported DateTime functions
 
 | Function           | Description                               
-|--------------------|----------------------------------------------------------
+|:-------------------|:----------------------------------------------------------
 | Today()            | Today()
 | Now()              | Now()
 | Date(.)            | Date('2024-01-01 12:00')

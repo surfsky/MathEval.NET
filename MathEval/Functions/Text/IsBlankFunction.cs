@@ -31,24 +31,17 @@ namespace Org.MathEval.Functions
     /// Returns TRUE when a given string is null or empty, otherwise return FALSE
     /// ISBLANK("") -> TRUE
     /// </summary>
-    public class IsblankFunction : IFunction
+    public class IsBlankFunction : IFunction
     {
-        /// <summary>
-        /// Get Information
-        /// </summary>
-        /// <returns>FunctionDefs</returns>
+        /// <summary>Get function defination information</summary>
         public List<FunctionDef> GetDefs()
         {
             return new List<FunctionDef>{
-                new FunctionDef(Consts.Isblank, typeof(Boolean), 1, new Type[]{ typeof(Object) })
+                new FunctionDef(Consts.IsBlank, typeof(Boolean), 1, new Type[]{ typeof(Object) })
             };
         }
 
         /// <summary>Execute</summary>
-        /// <param name="args">args</param>
-        /// <param name="dc">expression context</param>
-        /// <param name="funcName">function name</param>
-        /// <returns>Value</returns>
         public object Execute(List<object> args, ExpressionContext dc, string funcName = "")
         {
             return string.IsNullOrEmpty(Common.ToString(args[0], dc.Culture));
